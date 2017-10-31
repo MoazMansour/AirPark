@@ -1,0 +1,32 @@
+body {
+
+}
+
+html {
+    background-color: #0093ff;
+}
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+#nav {
+    background-color: rgba(34, 34, 34, 0.83);
+}
+
+.nav-page {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#page-canvas-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Metadata -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+        <title>AirPark</title>
+
+        <!-- Static Resources -->
+        <link rel="stylesheet" href="/static/css/uikit.min.css" />
+        <link rel="stylesheet" href="/static/css/main.css" />
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/uikit.min.js"></script>
+        <script type="text/javascript" src="/static/js/uikit-icons.min.js"></script>
+        <script type="text/javascript" src="/static/js/main.js"></script>
+    </head>
+    <body>
+        <div id="page-canvas-wrapper" class="uk-offcanvas-content uk-light">
+            <!-- Navigation bar -->
+            <div id="nav" class="uk-container uk-container-expand">
+                <nav class="uk-navbar-container uk-navbar-transparent uk-padding-small" uk-navbar>
+                    <div class="uk-navbar-left">
+                        <ul class="uk-navbar-nav">
+                            <li>AirPark</li>
+                        </ul>
+                    </div>
+
+                    <div class="uk-navbar-right" >
+                        <ul class="uk-navbar-nav">
+                            <li>
+                                <div id="nav-dropdown-button">
+                                    <a uk-toggle="target: #offcanvas-nav"><span class="">☰ </span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="nav-page" id="home-nav-page">
+                <h1>Home</h1>
+
+                <button class="uk-button uk-button-default" type="button" uk-toggle="target: #offcanvas-nav">Default Nav</button>
+            </div>
+            <div class="nav-page" id="search-nav-page">
+                <h1>Search</h1>
+            </div>
+            <div class="nav-page" id="reservation-nav-page">
+                <h1>Reservation</h1>
+            </div>
+            <div class="nav-page" id="profile-nav-page">
+                <h1>Profile</h1>
+            </div>
+            <div class="nav-page" id="host-activate-nav-page">
+                <h1>Host Activate</h1>
+            </div>
+            <div class="nav-page" id="spots-nav-page">
+                <h1>Spots</h1>
+            </div>
+            <div class="nav-page" id="rentals-nav-page">
+                <h1>Rentals</h1>
+            </div>
+            <div class="nav-page" id="settings-nav-page">
+                <h1>Settings</h1>
+            </div>
+
+            <!-- Navigation Menu -->
+            <div id="offcanvas-nav" uk-offcanvas="overlay: true; flip: true;">
+                <div class="uk-offcanvas-bar">
+                    <ul class="uk-nav uk-nav-default">
+                        <li class="uk-active"><a id="home-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: home"></span>Home</a></li>
+                        <li><a id="search-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: search"></span>Search Spots</a></li>
+                        <li class="uk-nav-header">Account</li>
+                        <li><a id="reservation-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: location"></span>My Reservations</a></li>
+                        <li><a id="profile-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: user"></span> My Profile</a></li>
+                        <li class="uk-nav-header">Host Tools</li>
+                        <li><a id="host-activate-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: bolt"></span> Become a Host...</a></li>
+                        <li><a id="spots-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span>My Spots</a></li>
+                        <li><a id="rentals-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: users"></span>My Rentals</a></li>
+                        <li class="uk-nav-divider"></li>
+                        <li><a id="settings-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: settings"></span> Settings</a></li>
+                        <li><a id="sign-out-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

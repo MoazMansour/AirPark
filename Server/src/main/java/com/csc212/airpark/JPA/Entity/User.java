@@ -1,6 +1,7 @@
 package com.csc212.airpark.JPA.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,6 +22,34 @@ import java.util.*;
 @NoArgsConstructor
 public class User implements Comparable<User>, Serializable, UserDetails {
 
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
+    public User(String username, String password, boolean isHost){
+        this.username = username;
+        this.password = password;
+        this.isHost = isHost;
+    }
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonIgnore
+    private List<Spot> spots = new ArrayList<>();
+
+    public void addSpot(Spot spot){
+        spots.add(spot);
+        spot.setUser(this);
+    }
+
+    public void removeSpot(Spot spot){
+        spots.remove(spot);
+        spot.setUser(null);
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "userId", unique = true, updatable = false)
@@ -33,14 +62,13 @@ public class User implements Comparable<User>, Serializable, UserDetails {
     // Hashed password using bcrypt2
     @NotNull
     @Column(name = "password")
+    @JsonIgnore
     private String password;
 
+    // Whether the user has activated host mode or not
     @NotNull
-    @ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
-    @JoinTable(name = "UsersRoles",
-            inverseJoinColumns = { @JoinColumn(referencedColumnName = "roleName")},
-            joinColumns = { @JoinColumn( referencedColumnName = "userId")})
-    private Set<Role> roles = new HashSet< Role >();
+    @Column(name = "isHost")
+    private boolean isHost;
 
     @CreationTimestamp
     @Column(name = "created")
@@ -54,28 +82,33 @@ public class User implements Comparable<User>, Serializable, UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        for (Role role : getRoles()){
-            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+        authorities.add(new SimpleGrantedAuthority("USER"));
+        if (isHost){
+            authorities.add(new SimpleGrantedAuthority("HOST"));
         }
         return authorities;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }

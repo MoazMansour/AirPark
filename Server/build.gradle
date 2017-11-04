@@ -30,5 +30,4 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('com.h2database:h2')
 	compileOnly('org.projectlombok:lombok')
-	compile( 'org.springframework.security.oauth:spring-security-oauth2' )
 }

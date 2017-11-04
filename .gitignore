@@ -1,5 +1,7 @@
+*.iml
 .gradle
-/build/
+Server/build/
+Server/out/
 
 # Forget the stuff below, just ignore the whole .idea directory
 .DS_Store

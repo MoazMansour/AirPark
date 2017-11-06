@@ -16,16 +16,45 @@
         <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="/static/js/uikit.min.js"></script>
         <script type="text/javascript" src="/static/js/uikit-icons.min.js"></script>
+        <script type="text/javascript" src='//maps.google.com/maps/api/js?key=AIzaSyASxtz1k5kbuhL4acZPKAZcmSo_s8yHwXs'></script>
+        <script type="text/javascript" src="/static/js/gmaps.js"></script>
         <script type="text/javascript" src="/static/js/main.js"></script>
     </head>
     <body>
-        <div id="page-canvas-wrapper" class="uk-offcanvas-content uk-light">
+        <div id="login-overlay" class="page-canvas-wrapper">
+            <div class="uk-light uk-padding">
+                <h1>AirPark</h1>
+                <p>Sign In to AirPark to find and share parking spots with your local community.</p>
+            </div>
+            <div class="dark-wrapper uk-width-1-1 uk-padding">
+                <p id="login-failure"></p>
+                <form>
+                    <div class="uk-margin uk-width-1-1">
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon" uk-icon="icon: user"></span>
+                            <input id="login-username" class="uk-input" type="text" placeholder="Username">
+                        </div>
+                    </div>
+                    <div class="uk-margin uk-width-1-1">
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon uk-form-icon" uk-icon="icon: lock"></span>
+                            <input id="login-password" class="uk-input" type="password" placeholder="Password">
+                        </div>
+                    </div>
+
+                    <button id="sign-in-button" class="uk-width-1-1 uk-button uk-button-secondary">Sign In</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="page-canvas-wrapper uk-offcanvas-content uk-light">
             <!-- Navigation bar -->
             <div id="nav" class="uk-container uk-container-expand">
-                <nav class="uk-navbar-container uk-navbar-transparent uk-padding-small" uk-navbar>
+                <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
                     <div class="uk-navbar-left">
                         <ul class="uk-navbar-nav">
-                            <li>AirPark</li>
+                            <a id="header-nav-home"><li>AirPark</li></a>
                         </ul>
                     </div>
 
@@ -33,7 +62,7 @@
                         <ul class="uk-navbar-nav">
                             <li>
                                 <div id="nav-dropdown-button">
-                                    <a uk-toggle="target: #offcanvas-nav"><span class="">☰ </span></a>
+                                    <a uk-toggle href="#offcanvas-nav" class="uk-navbar-toggle uk-navbar-toggle-icon" uk-icon="icon: menu"></a>
                                 </div>
                             </li>
                         </ul>
@@ -41,13 +70,44 @@
                 </nav>
             </div>
 
-            <div class="nav-page" id="home-nav-page">
+            <div class="nav-page uk-padding" id="home-nav-page">
                 <h1>Home</h1>
-
-                <button class="uk-button uk-button-default" type="button" uk-toggle="target: #offcanvas-nav">Default Nav</button>
             </div>
-            <div class="nav-page" id="search-nav-page">
-                <h1>Search</h1>
+            <div class="nav-page uk-padding" id="search-nav-page">
+                <h3>Search Parking Spots</h3>
+                <form>
+                    <fieldset class="uk-fieldset">
+                        <div class="uk-margin">
+                            Find me a parking spot within
+                            <input class="uk-range uk-width-1-2" type="range" value="1" min="0" max="60" step="0.1">
+                            <span class="uk-width-1-2">15 minutes</span><br>
+                            of my work location.
+                        </div>
+                        <button id="do-search" class="uk-button uk-button-default uk-width-1-1">Search for Spots</button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="nav-page uk-padding" id="search-result-nav-page">
+                <h3>Search Results</h3>
+
+                <p>356 Spots found.</p>
+
+                <div>
+                    <ul class="uk-child-width-expand" uk-tab>
+                        <li class="uk-active"><a href="#">Map</a></li>
+                        <li><a href="#">List</a></li>
+                    </ul>
+
+                    <ul class="uk-switcher uk-margin">
+                        <li>Map View
+                        <div id="search-result-map"></div>
+
+                        </li>
+                        <li>List View</li>
+                    </ul>
+                </div>
+
+
             </div>
             <div class="nav-page" id="reservation-nav-page">
                 <h1>Reservation</h1>
@@ -58,30 +118,39 @@
             <div class="nav-page" id="host-activate-nav-page">
                 <h1>Host Activate</h1>
             </div>
-            <div class="nav-page" id="spots-nav-page">
-                <h1>Spots</h1>
+            <div class="nav-page uk-padding" id="spots-nav-page">
+                <h3>My Spots</h3>
+                <button id="add-spot" class="uk-button uk-button-default uk-width-1-1">Add a Spot</button>
+                <div id="host-spot-container">
+                </div>
             </div>
             <div class="nav-page" id="rentals-nav-page">
                 <h1>Rentals</h1>
             </div>
             <div class="nav-page" id="settings-nav-page">
-                <h1>Settings</h1>
+                <h3>Account Settings</h3>
+                <button class="uk-button uk-button-default uk-width-1-1">Set Work Location</button>
+                <button id="sign-out-settings-button" class="uk-button uk-button-default uk-width-1-1 uk-margin">Sign Out</button>
             </div>
 
             <!-- Navigation Menu -->
-            <div id="offcanvas-nav" uk-offcanvas="overlay: true; flip: true;">
+            <div id="offcanvas-nav" uk-offcanvas="overlay: true; flip: false;">
                 <div class="uk-offcanvas-bar">
                     <ul class="uk-nav uk-nav-default">
-                        <li class="uk-active"><a id="home-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: home"></span>Home</a></li>
+                        <li class="uk-nav-header">Commuter</li>
+                        <!--<li class="uk-active"><a id="home-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: home"></span>Home</a></li>-->
                         <li><a id="search-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: search"></span>Search Spots</a></li>
+                        <!--
                         <li class="uk-nav-header">Account</li>
                         <li><a id="reservation-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: location"></span>My Reservations</a></li>
                         <li><a id="profile-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: user"></span> My Profile</a></li>
-                        <li class="uk-nav-header">Host Tools</li>
-                        <li><a id="host-activate-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: bolt"></span> Become a Host...</a></li>
+                    -->
+                        <li class="uk-nav-header">Host</li>
+                        <!--<li><a id="host-activate-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: bolt"></span> Become a Host...</a></li>-->
                         <li><a id="spots-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span>My Spots</a></li>
-                        <li><a id="rentals-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: users"></span>My Rentals</a></li>
-                        <li class="uk-nav-divider"></li>
+                        <!--<li><a id="rentals-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: users"></span>My Rentals</a></li>-->
+                        <!--<li class="uk-nav-divider"></li>-->
+                        <li class="uk-nav-header">Account</li>
                         <li><a id="settings-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: settings"></span> Settings</a></li>
                         <li><a id="sign-out-nav" class="nav-item"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Sign Out</a></li>
                     </ul>

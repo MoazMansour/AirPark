@@ -10,11 +10,9 @@ import com.csc212.airpark.Services.AirParkUserDetailsService;
 import com.google.maps.DistanceMatrixApi;
 import com.google.maps.DistanceMatrixApiRequest;
 import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApiRequest;
 import com.google.maps.errors.ApiException;
-import com.google.maps.model.DistanceMatrix;
-import com.google.maps.model.DistanceMatrixElement;
-import com.google.maps.model.LatLng;
-import com.google.maps.model.TravelMode;
+import com.google.maps.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -103,6 +101,12 @@ public class SpotAPI {
         }
     }
 
+    @GetMapping(value = "/api/spots",params = {"latitude", "longitude"})
+    public String getAddressFromCoordinates( @RequestParam("latitude") double latitude,
+                                                 @RequestParam("longitude") double longitude)
+            throws InterruptedException, ApiException, IOException {
+        return findAddressFromCoordinates(latitude, longitude);
+    }
 
     @GetMapping(value = "/api/spots",params = {"latitude", "longitude", "walkingDistance"})
     public List<Spot> getSpotsInWalkingDistance( @RequestParam("latitude") double latitude,
@@ -190,6 +194,19 @@ public class SpotAPI {
         return validSpots;
     }
 
+    private static String findAddressFromCoordinates(double latitude, double longitude)
+            throws InterruptedException, ApiException, IOException {
+        GeocodingApiRequest request = new GeocodingApiRequest(geoApiContext);
+
+        GeocodingResult[] result = request.latlng(new LatLng(latitude, longitude)).await();
+
+        if(result.length > 0) {
+            return result[0].formattedAddress;
+        }
+
+        return "";
+    }
+
     /**
      * From https://stackoverflow.com/questions/3694380/calculating-distance-between-two-points-using-latitude-longitude-what-am-i-doi
      * Calculate distance between two points in latitude and longitude taking
@@ -235,6 +252,8 @@ public class SpotAPI {
         LatLng seattle = new LatLng(47.6253050, -122.3221830);
         LatLng boston = new LatLng(42.3600830, -71.0588800);
         LatLng sanfrancisco = new LatLng(37.7749300, -122.4194160);
+
+        System.out.println(findAddressFromCoordinates(43.1280630, -77.6410030));
 
         LatLng[] destinations = new LatLng[]{seattle, boston, sanfrancisco};
 

@@ -104,28 +104,27 @@ public class SpotAPI {
     }
 
 
-    @GetMapping(value = "/api/spots",params = {"latitude","longitude","radius"})
-    public List<Spot> getSpotsInRadius( @RequestParam("latitude") double latitude,
+    @GetMapping(value = "/api/spots",params = {"latitude", "longitude", "walkingDistance"})
+    public List<Spot> getSpotsInWalkingDistance( @RequestParam("latitude") double latitude,
                                         @RequestParam("longitude") double longitude,
-                                        @RequestParam("radius") double radius)
+                                        @RequestParam("walkingDistance") double walkingDistance)
             throws InterruptedException, ApiException, IOException {
-        return findSpotsWithinWalkingDistance(latitude,longitude,radius);
+        return findSpotsInWalkingDistance(latitude, longitude, walkingDistance);
     }
 
-    @GetMapping(value = "/api/spots",params = {"latitude","longitude","duration"})
-    public List<SpotWithDuration> getSpotsInTimeRadius( @RequestParam("latitude") double latitude,
-                                        @RequestParam("longitude") double longitude,
-                                        @RequestParam("duration") double duration)
+    @GetMapping(value = "/api/spots",params = {"latitude", "longitude", "walkingDuration"})
+    public List<SpotWithDuration> getSpotsInWalkingDuration( @RequestParam("latitude") double latitude,
+                                                 @RequestParam("longitude") double longitude,
+                                                 @RequestParam("walkingDuration") double walkingDuration)
             throws InterruptedException, ApiException, IOException {
-        return findSpotsWithinWalkingDuration(latitude,longitude,duration);
+        return findSpotsInWalkingDuration(latitude, longitude, walkingDuration);
     }
-
 
     private static final double METERS_TO_MILES = 0.000621371;
 
     // Filter all the spots based on their walking distance from the user
     // walking distance is specified in miles
-    private ArrayList<Spot> findSpotsWithinWalkingDistance(double latitude, double longitude, double walkingDistance)
+    private ArrayList<Spot> findSpotsInWalkingDistance(double latitude, double longitude, double walkingDistance)
             throws InterruptedException, ApiException, IOException {
         ArrayList<Spot> validSpots = new ArrayList<>();
 
@@ -159,7 +158,7 @@ public class SpotAPI {
 
     // Filter all the spots based on their walking duration for the user
     // duration is specified in minutes
-    private ArrayList<SpotWithDuration> findSpotsWithinWalkingDuration(double latitude, double longitude, double walkingDuration)
+    private ArrayList<SpotWithDuration> findSpotsInWalkingDuration(double latitude, double longitude, double walkingDuration)
             throws InterruptedException, ApiException, IOException {
         ArrayList<SpotWithDuration> validSpots = new ArrayList<>();
 
@@ -230,7 +229,7 @@ public class SpotAPI {
                 .mode(TravelMode.WALKING)
                 .await();
     }
-
+    /*
     public static void main(String[] args) throws InterruptedException, ApiException, IOException {
         LatLng rochester = new LatLng(43.1280630, -77.6410030);
         LatLng seattle = new LatLng(47.6253050, -122.3221830);
@@ -248,4 +247,5 @@ public class SpotAPI {
         System.out.println(distanceMatrix.rows[0].elements[1].duration.inSeconds);
         System.out.println(distanceMatrix.rows[0].elements[2].duration.inSeconds);
     }
+    */
 }

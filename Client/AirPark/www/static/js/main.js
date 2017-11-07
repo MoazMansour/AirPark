@@ -282,7 +282,7 @@ function displaySearchResults(){
     var searchData = {
         latitude: userObject.latitude,
         longitude: userObject.longitude,
-        duration: $("#search-range").val()
+        walkingDuration: $("#search-range").val()
     };
 
     $.ajax({

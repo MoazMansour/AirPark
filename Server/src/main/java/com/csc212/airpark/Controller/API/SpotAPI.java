@@ -1,6 +1,7 @@
 package com.csc212.airpark.Controller.API;
 
 import com.csc212.airpark.Controller.API.Entity.ResponseStatus;
+import com.csc212.airpark.Controller.API.Entity.SpotWithDuration;
 import com.csc212.airpark.JPA.Entity.Spot;
 import com.csc212.airpark.JPA.Entity.User;
 import com.csc212.airpark.JPA.Repository.SpotRepository;
@@ -44,8 +45,9 @@ public class SpotAPI {
         try {
             Spot newSpot = new Spot(latitude, longitude, capacity);
 
-            userDetailsService.getLoggedInUser().addSpot(newSpot);
-            spotRepository.save(newSpot);
+            User spotUser = userDetailsService.getLoggedInUser();
+            spotUser.addSpot(newSpot);
+            userRepository.save(spotUser);
 
             return new ResponseStatus(0, "Created spot.");
         } catch (Exception e){
@@ -72,8 +74,9 @@ public class SpotAPI {
         }
 
         // Remove spot from the user's spot list, and then delete it from the database.
-        userDetailsService.getLoggedInUser().removeSpot(spotToDelete);
-        spotRepository.delete(spotToDelete);
+        User spotUser = userDetailsService.getLoggedInUser();
+        spotUser.removeSpot(spotToDelete);
+        userRepository.save(spotUser);
         return new ResponseStatus(1,"Deleted spot. ");
     }
 
@@ -89,9 +92,12 @@ public class SpotAPI {
 
     @GetMapping(value = "/api/spots", params = {"user"})
     public List<Spot> getAllSpotsForUser(@RequestParam("user") Integer userId){
-        User userToSearchBy = userRepository.findByUserId(userId);
+        User userToSearchBy = userDetailsService.getLoggedInUser();
+        if (userId != -1) {
+            userToSearchBy = userRepository.findByUserId(userId);
+        }
         if (userToSearchBy != null) {
-            return spotRepository.findAllByUser(userId);
+            return spotRepository.findAllByUser(userToSearchBy);
         } else {
             return new ArrayList<>();
         }
@@ -105,6 +111,15 @@ public class SpotAPI {
             throws InterruptedException, ApiException, IOException {
         return findSpotsWithinWalkingDistance(latitude,longitude,radius);
     }
+
+    @GetMapping(value = "/api/spots",params = {"latitude","longitude","duration"})
+    public List<SpotWithDuration> getSpotsInTimeRadius( @RequestParam("latitude") double latitude,
+                                        @RequestParam("longitude") double longitude,
+                                        @RequestParam("duration") double duration)
+            throws InterruptedException, ApiException, IOException {
+        return findSpotsWithinWalkingDuration(latitude,longitude,duration);
+    }
+
 
     private static final double METERS_TO_MILES = 0.000621371;
 
@@ -144,9 +159,9 @@ public class SpotAPI {
 
     // Filter all the spots based on their walking duration for the user
     // duration is specified in minutes
-    private ArrayList<Spot> findSpotsWithinWalkingDuration(double latitude, double longitude, double walkingDuration)
+    private ArrayList<SpotWithDuration> findSpotsWithinWalkingDuration(double latitude, double longitude, double walkingDuration)
             throws InterruptedException, ApiException, IOException {
-        ArrayList<Spot> validSpots = new ArrayList<>();
+        ArrayList<SpotWithDuration> validSpots = new ArrayList<>();
 
         List<Spot> allSpots = spotRepository.findAll();
 
@@ -163,7 +178,7 @@ public class SpotAPI {
             DistanceMatrixElement[] elements = distanceMatrix.rows[0].elements;
             for (int i = 0; i < elements.length; i++) {
                 if (elements[i].duration.inSeconds <= walkingDuration * 60) {
-                    validSpots.add(allSpots.get(i));
+                    validSpots.add(new SpotWithDuration(allSpots.get(i),elements[i].duration.inSeconds / 60.0));
                 }
             }
         } catch (Exception e) {

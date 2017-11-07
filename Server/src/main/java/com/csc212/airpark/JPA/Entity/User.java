@@ -50,6 +50,15 @@ public class User implements Comparable<User>, Serializable, UserDetails {
         spot.setUser(null);
     }
 
+    // User location latitude and longitude values
+    @Column(name = "latitude")
+    @NotNull
+    private Double latitude = 43.12927153794366;
+
+    @Column(name = "longitude")
+    @NotNull
+    private Double longitude = -77.62965202331543;
+
     @Id
     @GeneratedValue
     @Column(name = "userId", unique = true, updatable = false)

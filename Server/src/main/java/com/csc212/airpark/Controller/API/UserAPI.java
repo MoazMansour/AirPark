@@ -66,4 +66,25 @@ public class UserAPI {
     public User getActiveUser(){
         return userDetailsService.getLoggedInUser();
     }
+
+    @GetMapping("/api/user/{userId}/location")
+    public LatitudeLongitudePair getUserLocation(@PathVariable("userId") Integer userId){
+        User locUser = userRepository.findByUserId(userId);
+        return new LatitudeLongitudePair(locUser.getLatitude(),locUser.getLongitude());
+    }
+
+    @PatchMapping("/api/user/{userId}/location")
+    public ResponseStatus updateUserLocation(@PathVariable("userId") Integer userId,@RequestParam("latitude") Double latitude, @RequestParam("longitude") Double longitude){
+        try {
+            User locUser = userRepository.findByUserId(userId);
+            locUser.setLatitude(latitude);
+            locUser.setLongitude(longitude);
+            userRepository.save(locUser);
+            return new ResponseStatus(0,"Updated work location!");
+        } catch (Exception e){
+            return new ResponseStatus(1,"Could not update location: "+e.getMessage());
+        }
+    }
+
+
 }

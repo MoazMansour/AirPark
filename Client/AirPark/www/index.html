@@ -28,7 +28,7 @@
             </div>
             <div class="dark-wrapper uk-width-1-1 uk-padding">
                 <p id="login-failure"></p>
-                <form>
+                <form autocomplete="off">
                     <div class="uk-margin uk-width-1-1">
                         <div class="uk-inline uk-width-1-1">
                             <span class="uk-form-icon" uk-icon="icon: user"></span>
@@ -43,9 +43,9 @@
                     </div>
 
                     <button id="sign-in-button" class="uk-width-1-1 uk-button uk-button-secondary">Sign In</button>
+                    <button id="sign-up-button" class="uk-width-1-1 uk-button uk-button-secondary">Sign Up</button>
                 </form>
             </div>
-
         </div>
 
         <div class="page-canvas-wrapper uk-offcanvas-content uk-light">
@@ -70,6 +70,17 @@
                 </nav>
             </div>
 
+            <div class="nav-page uk-padding" id="loc-select-nav-page">
+                <h3 id="loc-select-header">Set Location Modal</h3>
+                <div class="loc-map-frame" id="loc-select-map-frame">
+                    <div class="loc-map" id="loc-select-map">
+                    </div>
+                </div>
+                <div uk-grid style="margin-left: 0px;">
+                    <button id="loc-select-cancel" class="uk-button uk-button-secondary uk-width-1-2"><span uk-icon="icon: close"></span> Cancel</button>
+                    <button id="loc-select-confirm" class="uk-button uk-button-primary uk-width-1-2"><span uk-icon="icon: check"></span> Confirm</button>
+                </div>
+            </div>
             <div class="nav-page uk-padding" id="home-nav-page">
                 <h1>Home</h1>
             </div>
@@ -78,12 +89,32 @@
                 <form>
                     <fieldset class="uk-fieldset">
                         <div class="uk-margin">
-                            Find me a parking spot within
-                            <input class="uk-range uk-width-1-2" type="range" value="1" min="0" max="60" step="0.1">
-                            <span class="uk-width-1-2">15 minutes</span><br>
-                            of my work location.
+                            Filter range (walking duration):<br>
+                            <input id="search-range" class="uk-range uk-width-1-2" type="range" value="15" min="0" max="60" step="1">
+                            <span class="uk-width-1-2"><span id="search-range-label">15</span> minutes</span>
                         </div>
-                        <button id="do-search" class="uk-button uk-button-default uk-width-1-1">Search for Spots</button>
+                        <!--<button id="search-set-home" class="uk-button uk-button-default uk-width-1-1">Set Work Location</button>-->
+                        <!--<button id="do-search" class="uk-button uk-button-default uk-width-1-1">Search</button>-->
+                        <div>
+                            <ul id="search-tabs" class="uk-child-width-expand" uk-tab style="margin-bottom: 5px;">
+                                <li class="uk-active"><a href="#">Map</a></li>
+                                <li><a href="#">List</a></li>
+                            </ul>
+
+                            <ul class="uk-switcher uk-margin" style="margin-top: 0px !important;">
+                                <li>
+                                <div class="loc-map-frame">
+                                    <div class="loc-map" id="search-result-map">
+                                    </div>
+                                </div>
+
+                                </li>
+                                <li>
+                                    <div id="search-spot-container">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </fieldset>
                 </form>
             </div>
@@ -91,23 +122,6 @@
                 <h3>Search Results</h3>
 
                 <p>356 Spots found.</p>
-
-                <div>
-                    <ul class="uk-child-width-expand" uk-tab>
-                        <li class="uk-active"><a href="#">Map</a></li>
-                        <li><a href="#">List</a></li>
-                    </ul>
-
-                    <ul class="uk-switcher uk-margin">
-                        <li>Map View
-                        <div id="search-result-map"></div>
-
-                        </li>
-                        <li>List View</li>
-                    </ul>
-                </div>
-
-
             </div>
             <div class="nav-page" id="reservation-nav-page">
                 <h1>Reservation</h1>
@@ -129,7 +143,7 @@
             </div>
             <div class="nav-page" id="settings-nav-page">
                 <h3>Account Settings</h3>
-                <button class="uk-button uk-button-default uk-width-1-1">Set Work Location</button>
+                <button id="set-home-button" class="uk-button uk-button-default uk-width-1-1">Set Work Location</button>
                 <button id="sign-out-settings-button" class="uk-button uk-button-default uk-width-1-1 uk-margin">Sign Out</button>
             </div>
 

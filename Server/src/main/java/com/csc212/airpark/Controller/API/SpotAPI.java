@@ -6,21 +6,33 @@ import com.csc212.airpark.JPA.Entity.User;
 import com.csc212.airpark.JPA.Repository.SpotRepository;
 import com.csc212.airpark.JPA.Repository.UserRepository;
 import com.csc212.airpark.Services.AirParkUserDetailsService;
+import com.google.maps.DistanceMatrixApi;
+import com.google.maps.DistanceMatrixApiRequest;
+import com.google.maps.GeoApiContext;
+import com.google.maps.errors.ApiException;
+import com.google.maps.model.DistanceMatrix;
+import com.google.maps.model.DistanceMatrixElement;
+import com.google.maps.model.LatLng;
+import com.google.maps.model.TravelMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class SpotAPI {
 
+    private static final String GOOGLE_API_KEY = "AIzaSyBetMNQkTi2Ug18prPG9oTeAcHx5ZkRJys";
+    private static final GeoApiContext geoApiContext = new GeoApiContext.Builder()
+            .apiKey(GOOGLE_API_KEY)
+            .build();
+
     @Autowired
     private SpotRepository spotRepository;
     @Autowired
     private UserRepository userRepository;
-
-
     @Autowired
     private AirParkUserDetailsService userDetailsService;
 
@@ -89,23 +101,79 @@ public class SpotAPI {
     @GetMapping(value = "/api/spots",params = {"latitude","longitude","radius"})
     public List<Spot> getSpotsInRadius( @RequestParam("latitude") double latitude,
                                         @RequestParam("longitude") double longitude,
-                                        @RequestParam("radius") double radius){
-        return findSpotsInRadius(latitude,longitude,radius);
+                                        @RequestParam("radius") double radius)
+            throws InterruptedException, ApiException, IOException {
+        return findSpotsWithinWalkingDistance(latitude,longitude,radius);
     }
 
     private static final double METERS_TO_MILES = 0.000621371;
 
-    // Filter all the spots based on their radius to a given point
-    // Radius is specified in miles
-    private ArrayList<Spot> findSpotsInRadius(double latitude, double longitude, double radius){
-        ArrayList<Spot> spotList = new ArrayList<>();
-        for (Spot spot  : spotRepository.findAll()){
-            double distanceToPoint = distance(latitude, spot.getLatitude(), longitude, spot.getLongitude(), 0, 0) * METERS_TO_MILES;
-            if (distanceToPoint <= radius){
-                spotList.add(spot);
-            }
+    // Filter all the spots based on their walking distance from the user
+    // walking distance is specified in miles
+    private ArrayList<Spot> findSpotsWithinWalkingDistance(double latitude, double longitude, double walkingDistance)
+            throws InterruptedException, ApiException, IOException {
+        ArrayList<Spot> validSpots = new ArrayList<>();
+
+        List<Spot> allSpots = spotRepository.findAll();
+
+        LatLng origin = new LatLng(latitude, longitude);
+        LatLng[] destinations = new LatLng[allSpots.size()];
+
+        for(int i = 0; i < allSpots.size(); i++) {
+            Spot spot = allSpots.get(i);
+            destinations[i] = new LatLng(spot.getLatitude(), spot.getLongitude());
         }
-        return spotList;
+
+        try {
+            DistanceMatrix distanceMatrix = getWalkingDistanceMatrix(origin, destinations);
+            DistanceMatrixElement[] elements = distanceMatrix.rows[0].elements;
+            for (int i = 0; i < elements.length; i++) {
+                if (elements[i].distance.inMeters * METERS_TO_MILES <= walkingDistance) {
+                    validSpots.add(allSpots.get(i));
+                }
+            }
+        } catch (Exception e) {
+            String errorString = String.format("Unable to get walking distances to destinations from origin: [%f, %f]",
+                    latitude, longitude);
+            System.out.println(errorString);
+            throw e;
+        }
+
+        return validSpots;
+    }
+
+    // Filter all the spots based on their walking duration for the user
+    // duration is specified in minutes
+    private ArrayList<Spot> findSpotsWithinWalkingDuration(double latitude, double longitude, double walkingDuration)
+            throws InterruptedException, ApiException, IOException {
+        ArrayList<Spot> validSpots = new ArrayList<>();
+
+        List<Spot> allSpots = spotRepository.findAll();
+
+        LatLng origin = new LatLng(latitude, longitude);
+        LatLng[] destinations = new LatLng[allSpots.size()];
+
+        for(int i = 0; i < allSpots.size(); i++) {
+            Spot spot = allSpots.get(i);
+            destinations[i] = new LatLng(spot.getLatitude(), spot.getLongitude());
+        }
+
+        try {
+            DistanceMatrix distanceMatrix = getWalkingDistanceMatrix(origin, destinations);
+            DistanceMatrixElement[] elements = distanceMatrix.rows[0].elements;
+            for (int i = 0; i < elements.length; i++) {
+                if (elements[i].duration.inSeconds <= walkingDuration * 60) {
+                    validSpots.add(allSpots.get(i));
+                }
+            }
+        } catch (Exception e) {
+            String errorString = String.format("Unable to get walking durations to destinations from origin: [%f, %f]",
+                    latitude, longitude);
+            System.out.println(errorString);
+            throw e;
+        }
+
+        return validSpots;
     }
 
     /**
@@ -138,4 +206,31 @@ public class SpotAPI {
         return Math.sqrt(distance);
     }
 
+    private static DistanceMatrix getWalkingDistanceMatrix(LatLng origin, LatLng[] destinations)
+            throws InterruptedException, ApiException, IOException {
+        DistanceMatrixApiRequest request = DistanceMatrixApi.newRequest(geoApiContext);
+
+        return request.origins(origin)
+                .destinations(destinations)
+                .mode(TravelMode.WALKING)
+                .await();
+    }
+
+    public static void main(String[] args) throws InterruptedException, ApiException, IOException {
+        LatLng rochester = new LatLng(43.1280630, -77.6410030);
+        LatLng seattle = new LatLng(47.6253050, -122.3221830);
+        LatLng boston = new LatLng(42.3600830, -71.0588800);
+        LatLng sanfrancisco = new LatLng(37.7749300, -122.4194160);
+
+        LatLng[] destinations = new LatLng[]{seattle, boston, sanfrancisco};
+
+        DistanceMatrix distanceMatrix = getWalkingDistanceMatrix(rochester, destinations);
+        System.out.println(distanceMatrix.rows[0].elements[0].distance.inMeters);
+        System.out.println(distanceMatrix.rows[0].elements[1].distance.inMeters);
+        System.out.println(distanceMatrix.rows[0].elements[2].distance.inMeters);
+
+        System.out.println(distanceMatrix.rows[0].elements[0].duration.inSeconds);
+        System.out.println(distanceMatrix.rows[0].elements[1].duration.inSeconds);
+        System.out.println(distanceMatrix.rows[0].elements[2].duration.inSeconds);
+    }
 }

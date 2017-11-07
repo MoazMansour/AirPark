@@ -30,4 +30,6 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('com.h2database:h2')
 	compileOnly('org.projectlombok:lombok')
+	compile('com.google.maps:google-maps-services:0.2.4')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 }

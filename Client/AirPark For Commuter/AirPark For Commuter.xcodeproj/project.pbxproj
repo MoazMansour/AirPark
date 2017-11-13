@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C2C3A9C1FBA1C8400DD02AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C3A9B1FBA1C8400DD02AF /* AppDelegate.swift */; };
+		4C2C3AA11FBA1C8400DD02AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C3A9F1FBA1C8400DD02AF /* Main.storyboard */; };
+		4C2C3AA31FBA1C8400DD02AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C3AA21FBA1C8400DD02AF /* Assets.xcassets */; };
+		4C2C3AA61FBA1C8400DD02AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C3AA41FBA1C8400DD02AF /* LaunchScreen.storyboard */; };
+		4C2C3AB11FBA1C8400DD02AF /* AirPark_For_CommuterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C3AB01FBA1C8400DD02AF /* AirPark_For_CommuterTests.swift */; };
+		4C2C3ABC1FBA1C8400DD02AF /* AirPark_For_CommuterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C3ABB1FBA1C8400DD02AF /* AirPark_For_CommuterUITests.swift */; };
+		4C2C3B071FBA246800DD02AF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C3B061FBA246800DD02AF /* Person.swift */; };
+		4C2C3B091FBA29E800DD02AF /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C3B081FBA29E800DD02AF /* SignInVC.swift */; };
+		4C2C3B101FBA325500DD02AF /* Installation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C3B0F1FBA325500DD02AF /* Installation.txt */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4C2C3AAD1FBA1C8400DD02AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C2C3A901FBA1C8400DD02AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C2C3A971FBA1C8400DD02AF;
+			remoteInfo = "AirPark For Commuter";
+		};
+		4C2C3AB81FBA1C8400DD02AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C2C3A901FBA1C8400DD02AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C2C3A971FBA1C8400DD02AF;
+			remoteInfo = "AirPark For Commuter";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4C2C3A981FBA1C8400DD02AF /* AirPark For Commuter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AirPark For Commuter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C2C3A9B1FBA1C8400DD02AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4C2C3AA01FBA1C8400DD02AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4C2C3AA21FBA1C8400DD02AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C2C3AA51FBA1C8400DD02AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4C2C3AA71FBA1C8400DD02AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C2C3AAC1FBA1C8400DD02AF /* AirPark For CommuterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AirPark For CommuterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C2C3AB01FBA1C8400DD02AF /* AirPark_For_CommuterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPark_For_CommuterTests.swift; sourceTree = "<group>"; };
+		4C2C3AB21FBA1C8400DD02AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C2C3AB71FBA1C8400DD02AF /* AirPark For CommuterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AirPark For CommuterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C2C3ABB1FBA1C8400DD02AF /* AirPark_For_CommuterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirPark_For_CommuterUITests.swift; sourceTree = "<group>"; };
+		4C2C3ABD1FBA1C8400DD02AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C2C3B061FBA246800DD02AF /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		4C2C3B081FBA29E800DD02AF /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		4C2C3B0F1FBA325500DD02AF /* Installation.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Installation.txt; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4C2C3A951FBA1C8400DD02AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C2C3AA91FBA1C8400DD02AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C2C3AB41FBA1C8400DD02AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C2C3A8F1FBA1C8400DD02AF = {
+			isa = PBXGroup;
+			children = (
+				4C2C3B0F1FBA325500DD02AF /* Installation.txt */,
+				4C2C3B051FBA244C00DD02AF /* Controller */,
+				4C2C3B041FBA244300DD02AF /* View */,
+				4C2C3B031FBA243C00DD02AF /* Model */,
+				4C2C3A9A1FBA1C8400DD02AF /* AirPark For Commuter */,
+				4C2C3AAF1FBA1C8400DD02AF /* AirPark For CommuterTests */,
+				4C2C3ABA1FBA1C8400DD02AF /* AirPark For CommuterUITests */,
+				4C2C3A991FBA1C8400DD02AF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4C2C3A991FBA1C8400DD02AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C2C3A981FBA1C8400DD02AF /* AirPark For Commuter.app */,
+				4C2C3AAC1FBA1C8400DD02AF /* AirPark For CommuterTests.xctest */,
+				4C2C3AB71FBA1C8400DD02AF /* AirPark For CommuterUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C2C3A9A1FBA1C8400DD02AF /* AirPark For Commuter */ = {
+			isa = PBXGroup;
+			children = (
+				4C2C3A9B1FBA1C8400DD02AF /* AppDelegate.swift */,
+				4C2C3A9F1FBA1C8400DD02AF /* Main.storyboard */,
+				4C2C3AA21FBA1C8400DD02AF /* Assets.xcassets */,
+				4C2C3AA41FBA1C8400DD02AF /* LaunchScreen.storyboard */,
+				4C2C3AA71FBA1C8400DD02AF /* Info.plist */,
+			);
+			path = "AirPark For Commuter";
+			sourceTree = "<group>";
+		};
+		4C2C3AAF1FBA1C8400DD02AF /* AirPark For CommuterTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C2C3AB01FBA1C8400DD02AF /* AirPark_For_CommuterTests.swift */,
+				4C2C3AB21FBA1C8400DD02AF /* Info.plist */,
+			);
+			path = "AirPark For CommuterTests";
+			sourceTree = "<group>";
+		};
+		4C2C3ABA1FBA1C8400DD02AF /* AirPark For CommuterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4C2C3ABB1FBA1C8400DD02AF /* AirPark_For_CommuterUITests.swift */,
+				4C2C3ABD1FBA1C8400DD02AF /* Info.plist */,
+			);
+			path = "AirPark For CommuterUITests";
+			sourceTree = "<group>";
+		};
+		4C2C3B031FBA243C00DD02AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C2C3B061FBA246800DD02AF /* Person.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4C2C3B041FBA244300DD02AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4C2C3B051FBA244C00DD02AF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C2C3B081FBA29E800DD02AF /* SignInVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C2C3A971FBA1C8400DD02AF /* AirPark For Commuter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C2C3AC01FBA1C8400DD02AF /* Build configuration list for PBXNativeTarget "AirPark For Commuter" */;
+			buildPhases = (
+				4C2C3A941FBA1C8400DD02AF /* Sources */,
+				4C2C3A951FBA1C8400DD02AF /* Frameworks */,
+				4C2C3A961FBA1C8400DD02AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AirPark For Commuter";
+			productName = "AirPark For Commuter";
+			productReference = 4C2C3A981FBA1C8400DD02AF /* AirPark For Commuter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4C2C3AAB1FBA1C8400DD02AF /* AirPark For CommuterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C2C3AC31FBA1C8400DD02AF /* Build configuration list for PBXNativeTarget "AirPark For CommuterTests" */;
+			buildPhases = (
+				4C2C3AA81FBA1C8400DD02AF /* Sources */,
+				4C2C3AA91FBA1C8400DD02AF /* Frameworks */,
+				4C2C3AAA1FBA1C8400DD02AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C2C3AAE1FBA1C8400DD02AF /* PBXTargetDependency */,
+			);
+			name = "AirPark For CommuterTests";
+			productName = "AirPark For CommuterTests";
+			productReference = 4C2C3AAC1FBA1C8400DD02AF /* AirPark For CommuterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4C2C3AB61FBA1C8400DD02AF /* AirPark For CommuterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C2C3AC61FBA1C8400DD02AF /* Build configuration list for PBXNativeTarget "AirPark For CommuterUITests" */;
+			buildPhases = (
+				4C2C3AB31FBA1C8400DD02AF /* Sources */,
+				4C2C3AB41FBA1C8400DD02AF /* Frameworks */,
+				4C2C3AB51FBA1C8400DD02AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C2C3AB91FBA1C8400DD02AF /* PBXTargetDependency */,
+			);
+			name = "AirPark For CommuterUITests";
+			productName = "AirPark For CommuterUITests";
+			productReference = 4C2C3AB71FBA1C8400DD02AF /* AirPark For CommuterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C2C3A901FBA1C8400DD02AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Sitthisack, Kim";
+				TargetAttributes = {
+					4C2C3A971FBA1C8400DD02AF = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					4C2C3AAB1FBA1C8400DD02AF = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4C2C3A971FBA1C8400DD02AF;
+					};
+					4C2C3AB61FBA1C8400DD02AF = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4C2C3A971FBA1C8400DD02AF;
+					};
+				};
+			};
+			buildConfigurationList = 4C2C3A931FBA1C8400DD02AF /* Build configuration list for PBXProject "AirPark For Commuter" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4C2C3A8F1FBA1C8400DD02AF;
+			productRefGroup = 4C2C3A991FBA1C8400DD02AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C2C3A971FBA1C8400DD02AF /* AirPark For Commuter */,
+				4C2C3AAB1FBA1C8400DD02AF /* AirPark For CommuterTests */,
+				4C2C3AB61FBA1C8400DD02AF /* AirPark For CommuterUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C2C3A961FBA1C8400DD02AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C2C3B101FBA325500DD02AF /* Installation.txt in Resources */,
+				4C2C3AA61FBA1C8400DD02AF /* LaunchScreen.storyboard in Resources */,
+				4C2C3AA31FBA1C8400DD02AF /* Assets.xcassets in Resources */,
+				4C2C3AA11FBA1C8400DD02AF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C2C3AAA1FBA1C8400DD02AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C2C3AB51FBA1C8400DD02AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C2C3A941FBA1C8400DD02AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C2C3B071FBA246800DD02AF /* Person.swift in Sources */,
+				4C2C3A9C1FBA1C8400DD02AF /* AppDelegate.swift in Sources */,
+				4C2C3B091FBA29E800DD02AF /* SignInVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C2C3AA81FBA1C8400DD02AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C2C3AB11FBA1C8400DD02AF /* AirPark_For_CommuterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C2C3AB31FBA1C8400DD02AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C2C3ABC1FBA1C8400DD02AF /* AirPark_For_CommuterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4C2C3AAE1FBA1C8400DD02AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C2C3A971FBA1C8400DD02AF /* AirPark For Commuter */;
+			targetProxy = 4C2C3AAD1FBA1C8400DD02AF /* PBXContainerItemProxy */;
+		};
+		4C2C3AB91FBA1C8400DD02AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C2C3A971FBA1C8400DD02AF /* AirPark For Commuter */;
+			targetProxy = 4C2C3AB81FBA1C8400DD02AF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4C2C3A9F1FBA1C8400DD02AF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C2C3AA01FBA1C8400DD02AF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4C2C3AA41FBA1C8400DD02AF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C2C3AA51FBA1C8400DD02AF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4C2C3ABE1FBA1C8400DD02AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4C2C3ABF1FBA1C8400DD02AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4C2C3AC11FBA1C8400DD02AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "AirPark For Commuter/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AirPark.AirPark-For-Commuter";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4C2C3AC21FBA1C8400DD02AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "AirPark For Commuter/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AirPark.AirPark-For-Commuter";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4C2C3AC41FBA1C8400DD02AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "AirPark For CommuterTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AirPark.AirPark-For-CommuterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirPark For Commuter.app/AirPark For Commuter";
+			};
+			name = Debug;
+		};
+		4C2C3AC51FBA1C8400DD02AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "AirPark For CommuterTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AirPark.AirPark-For-CommuterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirPark For Commuter.app/AirPark For Commuter";
+			};
+			name = Release;
+		};
+		4C2C3AC71FBA1C8400DD02AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "AirPark For CommuterUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AirPark.AirPark-For-CommuterUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "AirPark For Commuter";
+			};
+			name = Debug;
+		};
+		4C2C3AC81FBA1C8400DD02AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "AirPark For CommuterUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "AirPark.AirPark-For-CommuterUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "AirPark For Commuter";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4C2C3A931FBA1C8400DD02AF /* Build configuration list for PBXProject "AirPark For Commuter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C2C3ABE1FBA1C8400DD02AF /* Debug */,
+				4C2C3ABF1FBA1C8400DD02AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C2C3AC01FBA1C8400DD02AF /* Build configuration list for PBXNativeTarget "AirPark For Commuter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C2C3AC11FBA1C8400DD02AF /* Debug */,
+				4C2C3AC21FBA1C8400DD02AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C2C3AC31FBA1C8400DD02AF /* Build configuration list for PBXNativeTarget "AirPark For CommuterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C2C3AC41FBA1C8400DD02AF /* Debug */,
+				4C2C3AC51FBA1C8400DD02AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C2C3AC61FBA1C8400DD02AF /* Build configuration list for PBXNativeTarget "AirPark For CommuterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C2C3AC71FBA1C8400DD02AF /* Debug */,
+				4C2C3AC81FBA1C8400DD02AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4C2C3A901FBA1C8400DD02AF /* Project object */;
+}

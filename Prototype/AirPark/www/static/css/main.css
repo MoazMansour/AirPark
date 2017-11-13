@@ -1,0 +1,111 @@
+body {
+
+}
+
+html {
+    background-color: #0093ff;
+    overflow: hidden;
+}
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+#nav {
+    background-color: rgba(34, 34, 34, 0.83);
+    height: 80px;
+}
+
+#nav a {
+    text-decoration: none;
+}
+
+.nav-page {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.page-canvas-wrapper {
+    background-color: #0093ff;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#login-overlay {
+    z-index: 100;
+}
+
+.dark-wrapper {
+    background-color: rgba(0,0,0,0.4);
+}
+
+#login-failure {
+    color: #ff4949;
+}
+
+#host-spot-container {
+    margin-top: 20px;
+}
+
+.spot-card {
+    padding-right:60px;
+    overflow: hidden;
+    padding-left: 120px !important;
+    box-sizing: border-box;
+    max-height: 100px;
+}
+.spot-card h3 {
+    margin-bottom: 0px;
+}
+.spot-card p {
+    margin-top: 0px;
+}
+
+.spot-display-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.spot-card-action-pane {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+    color: #7b7b7b;
+}
+
+#search-result-map {
+    height: 400px;
+}
+
+#sign-up-button {
+    margin-top: 20px;
+}
+
+.loc-map-frame {
+    position: relative;
+    width: 100%;
+    padding-top:100%;
+    background-color: rgb(0,0,0,0.1);
+}
+
+.loc-map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

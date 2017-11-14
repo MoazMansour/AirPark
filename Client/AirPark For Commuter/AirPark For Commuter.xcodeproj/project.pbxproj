@@ -51,6 +51,7 @@
 		4C2C3B061FBA246800DD02AF /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		4C2C3B081FBA29E800DD02AF /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4C2C3B0F1FBA325500DD02AF /* Installation.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Installation.txt; sourceTree = "<group>"; };
+		D5286B701FBA65A40053DFFE /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +111,7 @@
 				4C2C3AA21FBA1C8400DD02AF /* Assets.xcassets */,
 				4C2C3AA41FBA1C8400DD02AF /* LaunchScreen.storyboard */,
 				4C2C3AA71FBA1C8400DD02AF /* Info.plist */,
+				D5286B701FBA65A40053DFFE /* menu_icon.png */,
 			);
 			path = "AirPark For Commuter";
 			sourceTree = "<group>";

@@ -325,6 +325,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="leadingConstraint" destination="Rfc-aX-8xL" id="rmi-Kq-V0J"/>
+                        <outlet property="map" destination="VWn-Ab-d9b" id="idM-za-dOx"/>
                         <outlet property="searchDisplayController" destination="Qlr-d6-9qt" id="HEW-qB-qPE"/>
                     </connections>
                 </viewController>
@@ -580,16 +581,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7gg-PR-p5S">
-                                <rect key="frame" x="62" y="299" width="250" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="OnD-vf-hL3" id="1rf-He-FIa"/>
-                                </connections>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Available From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYe-WG-aIs">
                                 <rect key="frame" x="62" y="337" width="250" height="44"/>
                                 <constraints>
@@ -637,14 +628,26 @@
                                     <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7gg-PR-p5S">
+                                <rect key="frame" x="62" y="299" width="250" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textBox:" destination="oTK-ls-rBg" eventType="editingDidEnd" id="dwH-qe-hSJ"/>
+                                    <outlet property="delegate" destination="OnD-vf-hL3" id="TmO-Lf-MV6"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="gbY-oE-fOH"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ld-ne-E6W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="oTK-ls-rBg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1666" y="1637"/>
+            <point key="canvasLocation" x="-1666.4000000000001" y="1636.7316341829087"/>
         </scene>
         <!--SpotDetails-->
         <scene sceneID="nAe-CS-nPU">

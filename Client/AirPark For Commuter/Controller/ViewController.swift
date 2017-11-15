@@ -7,18 +7,35 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class ViewController: UIViewController{
+class ViewController: UIViewController, CLLocationManagerDelegate{
     
+    //Map Code Starts
+    @IBOutlet weak var map: MKMapView!
+    let manager = CLLocationManager()
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        map.setRegion(region, animated: true)
+        self.map.showsUserLocation = true
+    }
+    //Map Code Ends
+    
+    //Sliding Menu Code Start
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
-    
     var menuShowing = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        manager.delegate=self
+        manager.desiredAccuracy=kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
+        
     }
-    
-    
     @IBAction func openMenu(_ sender: Any) {
         if(menuShowing){
             leadingConstraint.constant = -140
@@ -31,5 +48,8 @@ class ViewController: UIViewController{
         }
         menuShowing = !menuShowing
     }
+    //Sliding Menu Code End
+    
+    
     
 }

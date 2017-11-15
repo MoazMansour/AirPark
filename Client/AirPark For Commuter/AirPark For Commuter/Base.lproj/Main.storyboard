@@ -244,7 +244,6 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tok-wp-TOt">
                                 <rect key="frame" x="0.0" y="64" width="140" height="603"/>
                                 <subviews>
-<<<<<<< HEAD
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j20-xa-snr">
                                         <rect key="frame" x="8" y="8" width="124" height="30"/>
                                         <constraints>
@@ -257,12 +256,6 @@
                                         <connections>
                                             <segue destination="Uj3-NM-aM0" kind="show" id="Vgz-gf-Qnl"/>
                                         </connections>
-=======
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sI6-mF-4sX">
-                                        <rect key="frame" x="48" y="39" width="44" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Profile"/>
->>>>>>> 0546f2c6a9a422b126b13d1c3079a0ba2a0cd4ca
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -292,26 +285,16 @@
                         <outlet property="leadingConstraint" destination="Rfc-aX-8xL" id="rmi-Kq-V0J"/>
                     </connections>
                 </viewController>
-<<<<<<< HEAD
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97x-Kb-iNO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1016.8" y="646.32683658170924"/>
-=======
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GjC-lR-bKj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1799.2" y="698.5007496251875"/>
->>>>>>> 0546f2c6a9a422b126b13d1c3079a0ba2a0cd4ca
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Tl-mf-zmW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wgl-MQ-78k" sceneMemberID="viewController">
                     <toolbarItems/>
-<<<<<<< HEAD
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UDN-GD-nEf">
-=======
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v3d-Y5-uft">
->>>>>>> 0546f2c6a9a422b126b13d1c3079a0ba2a0cd4ca
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -240,7 +240,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VWn-Ab-d9b">
-                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                                <rect key="frame" x="-140" y="72" width="375" height="595"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="595" id="lwv-X7-xGx"/>
                                     <constraint firstAttribute="width" constant="375" id="qXi-El-BMp"/>
@@ -255,7 +255,7 @@
                                 </connections>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tok-wp-TOt">
-                                <rect key="frame" x="0.0" y="64" width="140" height="603"/>
+                                <rect key="frame" x="-140" y="64" width="140" height="603"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j20-xa-snr">
                                         <rect key="frame" x="8" y="67" width="124" height="30"/>
@@ -429,7 +429,7 @@
         <!--ProfilePage-->
         <scene sceneID="VSF-gZ-SBb">
             <objects>
-                <viewController title="ProfilePage" id="jCi-vJ-4xz" customClass="ViewController" customModule="AirParkScreens" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ProfilePage" id="jCi-vJ-4xz" customClass="ViewController" customModule="AirPark_For_Commuter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uNf-4O-oRo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

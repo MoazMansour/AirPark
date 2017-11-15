@@ -16,8 +16,8 @@
 		4C2C3B071FBA246800DD02AF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C3B061FBA246800DD02AF /* Person.swift */; };
 		4C2C3B091FBA29E800DD02AF /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C3B081FBA29E800DD02AF /* SignInVC.swift */; };
 		4C2C3B101FBA325500DD02AF /* Installation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C3B0F1FBA325500DD02AF /* Installation.txt */; };
-		4C32BAF91FBCD01800BA99D8 /* profile_img_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C32BAF81FBCD01700BA99D8 /* profile_img_placeholder.png */; };
 		4CDC8C4D1FBBA62D003B9737 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDC8C4C1FBBA62D003B9737 /* ViewController.swift */; };
+		D5E689B51FBCDF4F001D6B53 /* profile_img_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E689B41FBCDF4F001D6B53 /* profile_img_placeholder.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,9 +53,9 @@
 		4C2C3B061FBA246800DD02AF /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		4C2C3B081FBA29E800DD02AF /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4C2C3B0F1FBA325500DD02AF /* Installation.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Installation.txt; sourceTree = "<group>"; };
-		4C32BAF81FBCD01700BA99D8 /* profile_img_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = profile_img_placeholder.png; path = ../../../../Desktop/AirParkScreens/profile_img_placeholder.png; sourceTree = "<group>"; };
 		4CDC8C4C1FBBA62D003B9737 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D5286B701FBA65A40053DFFE /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = SOURCE_ROOT; };
+		D5E689B41FBCDF4F001D6B53 /* profile_img_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_img_placeholder.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +110,7 @@
 		4C2C3A9A1FBA1C8400DD02AF /* AirPark For Commuter */ = {
 			isa = PBXGroup;
 			children = (
-				4C32BAF81FBCD01700BA99D8 /* profile_img_placeholder.png */,
+				D5E689B41FBCDF4F001D6B53 /* profile_img_placeholder.png */,
 				4C2C3A9B1FBA1C8400DD02AF /* AppDelegate.swift */,
 				4C2C3A9F1FBA1C8400DD02AF /* Main.storyboard */,
 				4C2C3AA21FBA1C8400DD02AF /* Assets.xcassets */,
@@ -274,7 +274,7 @@
 				4C2C3AA61FBA1C8400DD02AF /* LaunchScreen.storyboard in Resources */,
 				4C2C3AA31FBA1C8400DD02AF /* Assets.xcassets in Resources */,
 				4C2C3AA11FBA1C8400DD02AF /* Main.storyboard in Resources */,
-				4C32BAF91FBCD01800BA99D8 /* profile_img_placeholder.png in Resources */,
+				D5E689B51FBCDF4F001D6B53 /* profile_img_placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

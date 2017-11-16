@@ -12,6 +12,11 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate{
     
+    //Search Bar Code Starts
+    
+    
+    //Search Bar Code Ends
+    
     //Map Code Starts
     @IBOutlet weak var map: MKMapView!
     let manager = CLLocationManager()

@@ -17,6 +17,7 @@
 		4C2C3B091FBA29E800DD02AF /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2C3B081FBA29E800DD02AF /* SignInVC.swift */; };
 		4C2C3B101FBA325500DD02AF /* Installation.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C3B0F1FBA325500DD02AF /* Installation.txt */; };
 		4CDC8C4D1FBBA62D003B9737 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDC8C4C1FBBA62D003B9737 /* ViewController.swift */; };
+		D5736F201FBE401000636E6D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5736F1F1FBE401000636E6D /* MapKit.framework */; };
 		D5E689B51FBCDF4F001D6B53 /* profile_img_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E689B41FBCDF4F001D6B53 /* profile_img_placeholder.png */; };
 		D5FFE4431FBCE4EE00CEF29E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5FFE4421FBCE4EE00CEF29E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		4C2C3B0F1FBA325500DD02AF /* Installation.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Installation.txt; sourceTree = "<group>"; };
 		4CDC8C4C1FBBA62D003B9737 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D5286B701FBA65A40053DFFE /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = SOURCE_ROOT; };
+		D5736F1F1FBE401000636E6D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D5E689B41FBCDF4F001D6B53 /* profile_img_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_img_placeholder.png; sourceTree = SOURCE_ROOT; };
 		D5FFE4421FBCE4EE00CEF29E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5736F201FBE401000636E6D /* MapKit.framework in Frameworks */,
 				D5FFE4431FBCE4EE00CEF29E /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +173,7 @@
 		D5FFE4411FBCE4EE00CEF29E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D5736F1F1FBE401000636E6D /* MapKit.framework */,
 				D5FFE4421FBCE4EE00CEF29E /* CoreLocation.framework */,
 			);
 			name = Frameworks;
@@ -244,6 +248,11 @@
 					4C2C3A971FBA1C8400DD02AF = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					4C2C3AAB1FBA1C8400DD02AF = {
 						CreatedOnToolsVersion = 9.0;

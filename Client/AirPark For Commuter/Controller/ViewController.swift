@@ -12,10 +12,13 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate{
     
-    //Search Bar Code Starts
+    // Side-menu Leading Constraint
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var menuView: UIView!
     
     
-    //Search Bar Code Ends
+    
+    
     
     //Map Code Starts
     @IBOutlet weak var map: MKMapView!
@@ -46,16 +49,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
     //Map Code Ends
     
     
-    
+
     //Sliding Menu Code Start
-    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+
     var menuShowing = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Shadow for the side-menu
+        menuView.layer.shadowOpacity = 2
+        
         manager.delegate=self
         manager.desiredAccuracy=kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+        //searchBar.delegate = self as! UISearchBarDelegate
         
     }
     @IBAction func openMenu(_ sender: Any) {
@@ -71,7 +78,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         menuShowing = !menuShowing
     }
     //Sliding Menu Code End
-    
+
     
     
 }

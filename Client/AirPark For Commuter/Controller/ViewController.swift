@@ -10,15 +10,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, CLLocationManagerDelegate{
+class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate{
     
     // Side-menu Leading Constraint
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
-    
-    
-    
-    
+    @IBOutlet weak var SearchBarMap: UISearchBar!
     
     //Map Code Starts
     @IBOutlet weak var map: MKMapView!
@@ -57,15 +54,35 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         super.viewDidLoad()
         // Shadow for the side-menu
         menuView.layer.shadowOpacity = 2
-        
+        SearchBarMap.delegate = self
         manager.delegate=self
         manager.desiredAccuracy=kCLLocationAccuracyBest
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        //searchBar.delegate = self as! UISearchBarDelegate
-        
     }
-    @IBAction func openMenu(_ sender: Any) {
+        
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            SearchBarMap.resignFirstResponder()
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(SearchBarMap.text!) {(placemarks:[CLPlacemark]?, error:Error?) in
+                if error == nil {
+                    
+                    let placemark = placemarks?.first
+                    let anno = MKPointAnnotation()
+                    anno.coordinate = (placemark?.location?.coordinate)!
+                    anno.title = self.SearchBarMap.text!
+                    let span = MKCoordinateSpanMake(0.075, 0.075)
+                    let region = MKCoordinateRegion(center: anno.coordinate, span: span)
+                    self.map.setRegion(region, animated: true)
+                    self.map.addAnnotation(anno)
+                    self.map.selectAnnotation(anno, animated: true)
+
+                } else {
+                    print(error?.localizedDescription ?? "error")
+                }
+            }
+    }
+     @IBAction func openMenu(_ sender: Any) {
         if(menuShowing){
             leadingConstraint.constant = -140
         } else{
@@ -78,7 +95,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         menuShowing = !menuShowing
     }
     //Sliding Menu Code End
+    }
 
-    
-    
-}
+

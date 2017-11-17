@@ -1,9 +1,8 @@
 //
-//  ViewController.swift
-//  AirPark For Commuter
-//
-//  Created by Sitthisack, Kim on 11/14/17.
-//  Copyright © 2017 Sitthisack, Kim. All rights reserved.
+// AirPark
+// Team AirPark
+// Sithhisack, Kim; Roy, Sayudh; Mansour, Moaz; Conroy, Nate; Dalke, Christopher
+// Copyright © 2017 Team AirPark. All rights reserved.
 //
 
 import UIKit
@@ -14,7 +13,11 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
     
     // Side-menu Leading Constraint
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
+    //Menu View
     @IBOutlet weak var menuView: UIView!
+    
+    //Search Bar
     @IBOutlet weak var SearchBarMap: UISearchBar!
     
     //Map Code Starts
@@ -45,10 +48,7 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
     }
     //Map Code Ends
     
-    
-
     //Sliding Menu Code Start
-
     var menuShowing = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,29 +61,7 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
         manager.startUpdatingLocation()
     }
         
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            SearchBarMap.resignFirstResponder()
-            let geocoder = CLGeocoder()
-            geocoder.geocodeAddressString(SearchBarMap.text!) {(placemarks:[CLPlacemark]?, error:Error?) in
-                if error == nil {
-                    
-                    let placemark = placemarks?.first
-                    let anno = MKPointAnnotation()
-                    anno.coordinate = (placemark?.location?.coordinate)!
-                    anno.title = self.SearchBarMap.text!
-                    let span = MKCoordinateSpanMake(0.075, 0.075)
-                    let region = MKCoordinateRegion(center: anno.coordinate, span: span)
-                    self.map.setRegion(region, animated: true)
-                    self.map.addAnnotation(anno)
-                    self.map.selectAnnotation(anno, animated: true)
-
-                } else {
-                    print(error?.localizedDescription ?? "error")
-                }
-            }
-    }
-    
-     @IBAction func openMenu(_ sender: Any) {
+    @IBAction func openMenu(_ sender: Any) {
         if(menuShowing){
             leadingConstraint.constant = -140
         } else{
@@ -96,6 +74,28 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
         menuShowing = !menuShowing
     }
     //Sliding Menu Code End
+    
+    //Search Bar Home Screen Code Start
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        SearchBarMap.resignFirstResponder()
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(SearchBarMap.text!) {(placemarks:[CLPlacemark]?, error:Error?) in
+            if error == nil {
+                
+                let placemark = placemarks?.first
+                let anno = MKPointAnnotation()
+                anno.coordinate = (placemark?.location?.coordinate)!
+                anno.title = self.SearchBarMap.text!
+                let span = MKCoordinateSpanMake(0.075, 0.075)
+                let region = MKCoordinateRegion(center: anno.coordinate, span: span)
+                self.map.setRegion(region, animated: true)
+                self.map.addAnnotation(anno)
+                self.map.selectAnnotation(anno, animated: true)
+                
+            } else {
+                print(error?.localizedDescription ?? "error")
+            }
+        }
     }
-
-
+    //Search Bar Home Screen Code End
+}

@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate{
+class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate, UISearchDisplayDelegate{
     
     // Side-menu Leading Constraint
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
@@ -82,6 +82,7 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
                 }
             }
     }
+    
      @IBAction func openMenu(_ sender: Any) {
         if(menuShowing){
             leadingConstraint.constant = -140

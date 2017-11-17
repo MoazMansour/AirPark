@@ -69,3 +69,6 @@ fabric.properties
 # Sonarlint plugin
 .idea/sonarlint
 Client/AirPark/platforms
+*.pbxproj
+*.xcuserstate
+*.storyboard

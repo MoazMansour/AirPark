@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -555,14 +555,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="97x-Kb-iNO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchBar contentMode="redraw" text="" id="IzG-Mq-Bh9">
-                    <rect key="frame" x="0.0" y="0.0" width="260" height="56"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <outlet property="delegate" destination="Pys-lV-ULh" id="xBe-j1-kbj"/>
-                    </connections>
-                </searchBar>
                 <searchDisplayController id="Qlr-d6-9qt">
                     <connections>
                         <outlet property="delegate" destination="Pys-lV-ULh" id="2wd-4l-2ay"/>
@@ -572,6 +564,14 @@
                         <outlet property="searchResultsDelegate" destination="Pys-lV-ULh" id="QaM-FJ-oT6"/>
                     </connections>
                 </searchDisplayController>
+                <searchBar contentMode="redraw" text="" id="IzG-Mq-Bh9">
+                    <rect key="frame" x="0.0" y="0.0" width="260" height="56"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="Pys-lV-ULh" id="xBe-j1-kbj"/>
+                    </connections>
+                </searchBar>
             </objects>
             <point key="canvasLocation" x="-2036" y="533.88305847076469"/>
         </scene>

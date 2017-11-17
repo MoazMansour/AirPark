@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:AirPark For Commuter.xcodeproj">
+      location = "self:/Users/ksitthis/AirPark/Client/AirPark For Commuter/AirPark.xcodeproj">
    </FileRef>
 </Workspace>

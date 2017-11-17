@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4C2C3A971FBA1C8400DD02AF"
-               BuildableName = "AirPark For Commuter.app"
-               BlueprintName = "AirPark For Commuter"
-               ReferencedContainer = "container:AirPark For Commuter.xcodeproj">
+               BuildableName = "AirPark.app"
+               BlueprintName = "AirPark"
+               ReferencedContainer = "container:AirPark.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -33,9 +34,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4C2C3AAB1FBA1C8400DD02AF"
-               BuildableName = "AirPark For CommuterTests.xctest"
-               BlueprintName = "AirPark For CommuterTests"
-               ReferencedContainer = "container:AirPark For Commuter.xcodeproj">
+               BuildableName = "AirParkTests.xctest"
+               BlueprintName = "AirParkTests"
+               ReferencedContainer = "container:AirPark.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +44,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4C2C3AB61FBA1C8400DD02AF"
-               BuildableName = "AirPark For CommuterUITests.xctest"
-               BlueprintName = "AirPark For CommuterUITests"
-               ReferencedContainer = "container:AirPark For Commuter.xcodeproj">
+               BuildableName = "AirParkUITests.xctest"
+               BlueprintName = "AirParkUITests"
+               ReferencedContainer = "container:AirPark.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C2C3A971FBA1C8400DD02AF"
-            BuildableName = "AirPark For Commuter.app"
-            BlueprintName = "AirPark For Commuter"
-            ReferencedContainer = "container:AirPark For Commuter.xcodeproj">
+            BuildableName = "AirPark.app"
+            BlueprintName = "AirPark"
+            ReferencedContainer = "container:AirPark.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,6 +66,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -76,9 +78,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C2C3A971FBA1C8400DD02AF"
-            BuildableName = "AirPark For Commuter.app"
-            BlueprintName = "AirPark For Commuter"
-            ReferencedContainer = "container:AirPark For Commuter.xcodeproj">
+            BuildableName = "AirPark.app"
+            BlueprintName = "AirPark"
+            ReferencedContainer = "container:AirPark.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +97,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4C2C3A971FBA1C8400DD02AF"
-            BuildableName = "AirPark For Commuter.app"
-            BlueprintName = "AirPark For Commuter"
-            ReferencedContainer = "container:AirPark For Commuter.xcodeproj">
+            BuildableName = "AirPark.app"
+            BlueprintName = "AirPark"
+            ReferencedContainer = "container:AirPark.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

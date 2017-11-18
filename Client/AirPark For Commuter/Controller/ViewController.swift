@@ -9,12 +9,23 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate, UISearchDisplayDelegate{
+class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate, UISearchDisplayDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    
+    //Host Mode: Available From Field
+    @IBOutlet weak var dateField: UITextField!
+    //Host Mode: Available To Field
+    @IBOutlet weak var dateField2: UITextField!
+    //Host Mode: Number of Spots Field
+    @IBOutlet weak var textNumSpots: UITextField!
+    
+    //UI Date Picker Object
+    let picker = UIDatePicker()
     
     // Side-menu Leading Constraint
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     
-    //Menu View
+   //Menu View
     @IBOutlet weak var menuView: UIView!
     
     //Search Bar
@@ -51,17 +62,78 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
     }
     //Map Code Ends
     
+    //Host-Mode: Available From Time Code Starts
+    func createDatePicker(){
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([done], animated: false)
+        
+        dateField.inputAccessoryView = toolbar
+        dateField.inputView = picker
+        
+        picker.datePickerMode = .dateAndTime
+    }
+    
+    @objc func donePressed() {
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .medium
+        
+        let dateString = formatter.string(from: picker.date)
+        
+        dateField.text = "\(dateString)"
+        self.view.endEditing(true)
+    }
+    //Host-Mode: Available From Time Code Ends
+    
+    //Host-Mode: Available To Time Code Starts
+    func createDatePicker2(){
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed2))
+        toolbar.setItems([done], animated: false)
+        
+        dateField2.inputAccessoryView = toolbar
+        dateField2.inputView = picker
+        
+        picker.datePickerMode = .dateAndTime
+    }
+    
+    @objc func donePressed2() {
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .medium
+        
+        let dateString = formatter.string(from: picker.date)
+        
+        dateField2.text = "\(dateString)"
+        self.view.endEditing(true)
+    }
+    //Host-Mode: Available To Time Code Ends
+    
     //Sliding Menu Code Start
     var menuShowing = false
     override func viewDidLoad() {
         super.viewDidLoad()
         // Shadow for the side-menu
-        menuView.layer.shadowOpacity = 2
-        SearchBarMap.delegate = self
-        manager.delegate=self
-        manager.desiredAccuracy=kCLLocationAccuracyBest
-        manager.requestWhenInUseAuthorization()
-        manager.startUpdatingLocation()
+        //menuView.layer.shadowOpacity = 2
+        //SearchBarMap.delegate = self
+        //manager.delegate=self
+        //manager.desiredAccuracy=kCLLocationAccuracyBest
+        //manager.requestWhenInUseAuthorization()
+        //manager.startUpdatingLocation()
+        createDatePicker()
+        createDatePicker2()
+        pickerView.delegate=self
+        pickerView.dataSource=self
+        textNumSpots.textAlignment = .center
+        
+        textNumSpots.inputView = pickerView
     }
         
     @IBAction func openMenu(_ sender: Any) {
@@ -77,6 +149,29 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
         menuShowing = !menuShowing
     }
     //Sliding Menu Code End
+    
+    //Host-Mode: Number of Spots Code Starts
+    let options = ["1", "2", "3", "4"]
+    var pickerView = UIPickerView()
+    
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return options.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return options[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        textNumSpots.text = options[row]
+        textNumSpots.resignFirstResponder()
+    }
+
+//Host-Mode: Number of Spots Code Ends
     
     //Search Bar Home Screen Code Start
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

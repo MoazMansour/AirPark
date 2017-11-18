@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -92,14 +92,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i75-BK-p3c">
-                                <rect key="frame" x="95" y="454" width="185" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Confirm">
-                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dny-VJ-pl4">
                                 <rect key="frame" x="212" y="492" width="58" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -176,13 +168,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i75-BK-p3c">
+                                <rect key="frame" x="95" y="454" width="185" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Confirm">
+                                    <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="OnD-vf-hL3" kind="show" id="cGf-BX-5PQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VI9-6M-CA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2036" y="-134"/>
+            <point key="canvasLocation" x="-3378" y="-134"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="OVm-TR-IiA">
@@ -411,7 +414,7 @@
         <!--HomepageMap-->
         <scene sceneID="kQM-YU-G6k">
             <objects>
-                <viewController title="HomepageMap" id="Pys-lV-ULh" customClass="ViewController" customModule="AirPark_For_Commuter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="HomepageMap" id="Pys-lV-ULh" customClass="ViewController" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XYH-6p-t16"/>
                         <viewControllerLayoutGuide type="bottom" id="kdL-vx-2oD"/>
@@ -591,12 +594,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7e9-e8-C4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3332" y="1059"/>
+            <point key="canvasLocation" x="-2690" y="534"/>
         </scene>
         <!--HostMode-->
         <scene sceneID="oIt-nt-N5A">
             <objects>
-                <viewController title="HostMode" id="OnD-vf-hL3" sceneMemberID="viewController">
+                <viewController title="HostMode" id="OnD-vf-hL3" customClass="ViewController" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pcX-u5-Q7y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -852,11 +855,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gbY-oE-fOH"/>
                     </view>
+                    <connections>
+                        <outlet property="dateField" destination="1Si-l6-u5R" id="FRW-T0-Xry"/>
+                        <outlet property="dateField2" destination="Kr7-WE-7vd" id="Sov-Ye-xhc"/>
+                        <outlet property="textNumSpots" destination="7gg-PR-p5S" id="tIl-oz-zfU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ld-ne-E6W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="oTK-ls-rBg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2036" y="1196"/>
+            <point key="canvasLocation" x="-3378" y="1196"/>
         </scene>
         <!--SpotDetails-->
         <scene sceneID="nAe-CS-nPU">
@@ -1111,4 +1119,7 @@
     <resources>
         <image name="profile_img_placeholder.png" width="720" height="720"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="cGf-BX-5PQ"/>
+    </inferredMetricsTieBreakers>
 </document>

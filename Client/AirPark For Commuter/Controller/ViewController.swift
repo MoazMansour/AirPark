@@ -32,16 +32,19 @@ class ViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDe
         self.map.showsUserLocation = true
         
         //Map Other Locations Start
-        // Rettner Hall: 43.128527, -77.629867
-        // Wegmans Hall: 43.126099, -77.629326
-        let spotLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(43.128527, -77.629867)
+        let locations = [
+            ["title": "Wegmans Hall", "subtitle": "$2/hr", "latitude": 43.126099, "longitude": -77.629326],
+            ["title": "Morey Hall", "subtitle": "$2/hr", "latitude": 43.128394, "longitude": -77.629344],
+            ["title": "Susan B. Anthony", "subtitle": "$2/hr",  "latitude": 43.129838, "longitude": -77.626315]
+        ]
         
-        let annotation = MKPointAnnotation()
-        
-        annotation.coordinate = spotLocation
-        annotation.title = "Sayudh Roy"
-        annotation.subtitle = "$2/hr"
-        map.addAnnotation(annotation)
+        for location in locations {
+            let annotation = MKPointAnnotation()
+            annotation.title = location["title"] as? String
+            annotation.subtitle = location["subtitle"] as? String
+            annotation.coordinate = CLLocationCoordinate2D(latitude: location["latitude"] as! Double, longitude: location["longitude"] as! Double)
+            map.addAnnotation(annotation)
+        }
         
         //Map Other Locations End
         

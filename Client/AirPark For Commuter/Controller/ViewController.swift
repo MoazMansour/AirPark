@@ -30,6 +30,39 @@ class ViewControllerSignIn: UIViewController, UITextFieldDelegate {
     }
 }
 
+//This Class is for the SIGN UP PAGE
+class ViewControllerSignUp: UIViewController, UITextFieldDelegate {
+   
+    //Sign Up: Name Field
+    @IBOutlet weak var Name: UITextField!
+    //Sign Up: Username Field
+    @IBOutlet weak var username: UITextField!
+    //Sign Up: Password Field
+    @IBOutlet weak var password: UITextField!
+    //Sign Up: Retype Password Field
+    @IBOutlet weak var retype: UITextField!
+    //Sign Up: Email Field
+    @IBOutlet weak var email: UITextField!
+    //Sign Up: Phone Number Field
+    @IBOutlet weak var phoneNo: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.Name.delegate = self;
+        self.username.delegate = self;
+        self.password.delegate = self;
+        self.retype.delegate = self;
+        self.email.delegate = self;
+        self.phoneNo.delegate = self;
+    }
+    
+    //Function to close the keyboard on pressing RETURN
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+}
+
 //This Class is for the HOST MODE PAGE
 class ViewControllerHostMode: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
     

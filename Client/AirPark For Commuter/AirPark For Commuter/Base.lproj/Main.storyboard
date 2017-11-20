@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -175,9 +175,6 @@
                                 <state key="normal" title="Confirm">
                                     <color key="titleColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <connections>
-                                    <segue destination="OnD-vf-hL3" kind="show" id="cGf-BX-5PQ"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -599,7 +596,7 @@
         <!--HostMode-->
         <scene sceneID="oIt-nt-N5A">
             <objects>
-                <viewController title="HostMode" id="OnD-vf-hL3" customClass="ViewController" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="HostMode" id="OnD-vf-hL3" customClass="ViewControllerHostMode" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pcX-u5-Q7y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -864,7 +861,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ld-ne-E6W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="oTK-ls-rBg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-3378" y="1196"/>
+            <point key="canvasLocation" x="-2036" y="1196"/>
         </scene>
         <!--SpotDetails-->
         <scene sceneID="nAe-CS-nPU">
@@ -1119,7 +1116,4 @@
     <resources>
         <image name="profile_img_placeholder.png" width="720" height="720"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="cGf-BX-5PQ"/>
-    </inferredMetricsTieBreakers>
 </document>

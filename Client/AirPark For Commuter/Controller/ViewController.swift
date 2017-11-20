@@ -64,8 +64,10 @@ class ViewControllerSignUp: UIViewController, UITextFieldDelegate {
 }
 
 //This Class is for the HOST MODE PAGE
-class ViewControllerHostMode: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
-    
+class ViewControllerHostMode: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate{
+   
+    //Host Mode: Address Field
+    @IBOutlet weak var address: UITextField!
     //Host Mode: Available From Field
     @IBOutlet weak var dateField: UITextField!
     //Host Mode: Available To Field
@@ -156,13 +158,23 @@ class ViewControllerHostMode: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.address.delegate = self;
+        
         createDatePicker()
         createDatePicker2()
+        
         pickerView.delegate=self
         pickerView.dataSource=self
-        textNumSpots.textAlignment = .center
         
+        textNumSpots.textAlignment = .center
         textNumSpots.inputView = pickerView
+    }
+    
+    //Function to close the keyboard on pressing RETURN
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
 }

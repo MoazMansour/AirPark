@@ -450,7 +450,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="595"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UhL-9Y-fjP" userLabel="Side Menu">
+                            <view alpha="0.75" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UhL-9Y-fjP" userLabel="Side Menu">
                                 <rect key="frame" x="0.0" y="64" width="140" height="603"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdc-5G-Ial">
@@ -564,7 +564,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="AirPark" id="pbZ-ks-eIu">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="0ol-dM-fGK">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="0ol-dM-fGK">
                             <connections>
                                 <action selector="openMenu:" destination="Pys-lV-ULh" id="M8z-Tg-WUb"/>
                             </connections>

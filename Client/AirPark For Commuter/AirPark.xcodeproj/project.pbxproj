@@ -55,7 +55,6 @@
 		4C2C3B0F1FBA325500DD02AF /* Installation.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Installation.txt; sourceTree = "<group>"; };
 		4CDC8C4C1FBBA62D003B9737 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9ACAC8141FBE87D000F29932 /* menu-three-horizontal-lines-symbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-three-horizontal-lines-symbol.png"; sourceTree = "<group>"; };
-		D5286B701FBA65A40053DFFE /* menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_icon.png; sourceTree = SOURCE_ROOT; };
 		D5736F1F1FBE401000636E6D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D5E689B41FBCDF4F001D6B53 /* profile_img_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_img_placeholder.png; sourceTree = SOURCE_ROOT; };
 		D5FFE4421FBCE4EE00CEF29E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -123,7 +122,6 @@
 				4C2C3AA41FBA1C8400DD02AF /* LaunchScreen.storyboard */,
 				4C2C3AA71FBA1C8400DD02AF /* Info.plist */,
 				9ACAC8141FBE87D000F29932 /* menu-three-horizontal-lines-symbol.png */,
-				D5286B701FBA65A40053DFFE /* menu_icon.png */,
 			);
 			path = "AirPark For Commuter";
 			sourceTree = "<group>";

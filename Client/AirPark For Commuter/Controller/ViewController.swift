@@ -9,6 +9,27 @@ import UIKit
 import MapKit
 import CoreLocation
 
+//This Class is for the SIGN IN PAGE
+class ViewControllerSignIn: UIViewController, UITextFieldDelegate {
+    
+    //Sign In: Username Field
+    @IBOutlet weak var username: UITextField!
+    //Sign In: Password Field
+    @IBOutlet weak var password: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.username.delegate = self;
+        self.password.delegate = self;
+    }
+    
+    //Function to close the keyboard on pressing RETURN
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+}
+
 //This Class is for the HOST MODE PAGE
 class ViewControllerHostMode: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
     

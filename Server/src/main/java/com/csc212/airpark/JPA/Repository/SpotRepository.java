@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface SpotRepository extends JpaRepository<Spot, Integer> {
     Spot findBySpotId(int spotId);
-    List<Spot> findAllByUser(User user);
+    List<Spot> findAllByOwnerUserId(Integer userId);
 }

@@ -41,11 +41,12 @@ public class SpotAPI {
                                   @RequestParam("capacity") int capacity){
 
         try {
-            Spot newSpot = new Spot(latitude, longitude, capacity);
-
             User spotUser = userDetailsService.getLoggedInUser();
+
+            Spot newSpot = new Spot(latitude, longitude, capacity, spotUser.getUserId());
             spotUser.addSpot(newSpot);
             userRepository.save(spotUser);
+            spotRepository.save(newSpot);
 
             return new ResponseStatus(0, "Created spot.");
         } catch (Exception e){
@@ -67,7 +68,7 @@ public class SpotAPI {
         if (spotToDelete == null) {
             return new ResponseStatus(1, "Could not delete spot: Spot does not exist.");
         }
-        if (spotToDelete.getUser() != userDetailsService.getLoggedInUser()){
+        if (userRepository.findByUserId(spotToDelete.getOwnerUserId()).compareTo(userDetailsService.getLoggedInUser()) != 0) {
             return new ResponseStatus(1,"Could not delete spot: You do not own this spot!");
         }
 
@@ -75,7 +76,8 @@ public class SpotAPI {
         User spotUser = userDetailsService.getLoggedInUser();
         spotUser.removeSpot(spotToDelete);
         userRepository.save(spotUser);
-        return new ResponseStatus(1,"Deleted spot. ");
+        spotRepository.delete(spotToDelete);
+        return new ResponseStatus(0, String.format("Deleted spot with id: %d.", spotId));
     }
 
     @GetMapping("/api/spot/{spotId}")
@@ -95,7 +97,7 @@ public class SpotAPI {
             userToSearchBy = userRepository.findByUserId(userId);
         }
         if (userToSearchBy != null) {
-            return spotRepository.findAllByUser(userToSearchBy);
+            return spotRepository.findAllByOwnerUserId(userToSearchBy.getUserId());
         } else {
             return new ArrayList<>();
         }
@@ -246,25 +248,4 @@ public class SpotAPI {
                 .mode(TravelMode.WALKING)
                 .await();
     }
-    /*
-    public static void main(String[] args) throws InterruptedException, ApiException, IOException {
-        LatLng rochester = new LatLng(43.1280630, -77.6410030);
-        LatLng seattle = new LatLng(47.6253050, -122.3221830);
-        LatLng boston = new LatLng(42.3600830, -71.0588800);
-        LatLng sanfrancisco = new LatLng(37.7749300, -122.4194160);
-
-        System.out.println(findAddressFromCoordinates(43.1280630, -77.6410030));
-
-        LatLng[] destinations = new LatLng[]{seattle, boston, sanfrancisco};
-
-        DistanceMatrix distanceMatrix = getWalkingDistanceMatrix(rochester, destinations);
-        System.out.println(distanceMatrix.rows[0].elements[0].distance.inMeters);
-        System.out.println(distanceMatrix.rows[0].elements[1].distance.inMeters);
-        System.out.println(distanceMatrix.rows[0].elements[2].distance.inMeters);
-
-        System.out.println(distanceMatrix.rows[0].elements[0].duration.inSeconds);
-        System.out.println(distanceMatrix.rows[0].elements[1].duration.inSeconds);
-        System.out.println(distanceMatrix.rows[0].elements[2].duration.inSeconds);
-    }
-    */
 }

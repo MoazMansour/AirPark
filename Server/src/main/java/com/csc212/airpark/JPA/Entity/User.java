@@ -33,7 +33,7 @@ public class User implements Comparable<User>, Serializable, UserDetails {
     }
 
     @OneToMany(
-            mappedBy = "user",
+            mappedBy = "ownerUserId",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
@@ -42,12 +42,10 @@ public class User implements Comparable<User>, Serializable, UserDetails {
 
     public void addSpot(Spot spot){
         spots.add(spot);
-        spot.setUser(this);
     }
 
     public void removeSpot(Spot spot){
         spots.remove(spot);
-        spot.setUser(null);
     }
 
     // User location latitude and longitude values

@@ -12,10 +12,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Spot {
 
-    public Spot(double latitude, double longitude, int capacity) {
+    public Spot(double latitude, double longitude, int capacity, Integer ownerUserId) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.capacity = capacity;
+        this.ownerUserId = ownerUserId;
     }
 
     @Id
@@ -32,8 +33,6 @@ public class Spot {
     @Column(name = "capacity")
     private int capacity = 1;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user")
-    @JsonIgnore
-    private User user;
+    @Column (name = "ownerUserId")
+    private Integer ownerUserId;
 }

@@ -6,6 +6,8 @@
 //  Copyright © 2017 Sitthisack, Kim. All rights reserved.
 //
 
+// Navigation Tutorial: https://www.youtube.com/watch?v=INfCmCxLC0o
+
 import Foundation
 
 class Person{

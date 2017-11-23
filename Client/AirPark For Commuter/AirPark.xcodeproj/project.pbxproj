@@ -18,7 +18,6 @@
 		578A168E1FC7899400447D8C /* HostModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A168D1FC7899400447D8C /* HostModeController.swift */; };
 		578A16901FC789B400447D8C /* MainPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A168F1FC789B400447D8C /* MainPageController.swift */; };
 		D5736F201FBE401000636E6D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5736F1F1FBE401000636E6D /* MapKit.framework */; };
-		D5E689B51FBCDF4F001D6B53 /* profile_img_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = D5E689B41FBCDF4F001D6B53 /* profile_img_placeholder.png */; };
 		D5FFE4431FBCE4EE00CEF29E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5FFE4421FBCE4EE00CEF29E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,9 +34,7 @@
 		578A168B1FC7891C00447D8C /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		578A168D1FC7899400447D8C /* HostModeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostModeController.swift; sourceTree = "<group>"; };
 		578A168F1FC789B400447D8C /* MainPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageController.swift; sourceTree = "<group>"; };
-		9ACAC8141FBE87D000F29932 /* menu-three-horizontal-lines-symbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-three-horizontal-lines-symbol.png"; sourceTree = "<group>"; };
 		D5736F1F1FBE401000636E6D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		D5E689B41FBCDF4F001D6B53 /* profile_img_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile_img_placeholder.png; sourceTree = SOURCE_ROOT; };
 		D5FFE4421FBCE4EE00CEF29E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -57,11 +54,9 @@
 		4C2C3A8F1FBA1C8400DD02AF = {
 			isa = PBXGroup;
 			children = (
+				578A16921FC78BDC00447D8C /* Sources */,
+				578A16911FC78B3E00447D8C /* Resources */,
 				4C2C3B0F1FBA325500DD02AF /* Installation.txt */,
-				4C2C3B051FBA244C00DD02AF /* Controller */,
-				4C2C3B041FBA244300DD02AF /* View */,
-				4C2C3B031FBA243C00DD02AF /* Model */,
-				4C2C3A9A1FBA1C8400DD02AF /* AirPark For Commuter */,
 				4C2C3A991FBA1C8400DD02AF /* Products */,
 				D5FFE4411FBCE4EE00CEF29E /* Frameworks */,
 			);
@@ -75,33 +70,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4C2C3A9A1FBA1C8400DD02AF /* AirPark For Commuter */ = {
-			isa = PBXGroup;
-			children = (
-				D5E689B41FBCDF4F001D6B53 /* profile_img_placeholder.png */,
-				4C2C3A9B1FBA1C8400DD02AF /* AppDelegate.swift */,
-				4C2C3A9F1FBA1C8400DD02AF /* Main.storyboard */,
-				4C2C3AA21FBA1C8400DD02AF /* Assets.xcassets */,
-				4C2C3AA41FBA1C8400DD02AF /* LaunchScreen.storyboard */,
-				4C2C3AA71FBA1C8400DD02AF /* Info.plist */,
-				9ACAC8141FBE87D000F29932 /* menu-three-horizontal-lines-symbol.png */,
-			);
-			path = "AirPark For Commuter";
-			sourceTree = "<group>";
-		};
 		4C2C3B031FBA243C00DD02AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				4C2C3B061FBA246800DD02AF /* Person.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		4C2C3B041FBA244300DD02AF /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		4C2C3B051FBA244C00DD02AF /* Controller */ = {
@@ -113,6 +87,35 @@
 				578A168F1FC789B400447D8C /* MainPageController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		578A16911FC78B3E00447D8C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4C2C3AA71FBA1C8400DD02AF /* Info.plist */,
+				578A16931FC78C5B00447D8C /* Storyboards */,
+				4C2C3AA21FBA1C8400DD02AF /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		578A16921FC78BDC00447D8C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4C2C3B031FBA243C00DD02AF /* Model */,
+				4C2C3B051FBA244C00DD02AF /* Controller */,
+				4C2C3A9B1FBA1C8400DD02AF /* AppDelegate.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		578A16931FC78C5B00447D8C /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4C2C3A9F1FBA1C8400DD02AF /* Main.storyboard */,
+				4C2C3AA41FBA1C8400DD02AF /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		D5FFE4411FBCE4EE00CEF29E /* Frameworks */ = {
@@ -192,7 +195,6 @@
 				4C2C3AA61FBA1C8400DD02AF /* LaunchScreen.storyboard in Resources */,
 				4C2C3AA31FBA1C8400DD02AF /* Assets.xcassets in Resources */,
 				4C2C3AA11FBA1C8400DD02AF /* Main.storyboard in Resources */,
-				D5E689B51FBCDF4F001D6B53 /* profile_img_placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,9 +349,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PQBA5KCA52;
-				INFOPLIST_FILE = "AirPark For Commuter/Info.plist";
+				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "AirPark.AirPark-For-Commuter";
+				PRODUCT_BUNDLE_IDENTIFIER = com.csc212.AirPark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -362,9 +364,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PQBA5KCA52;
-				INFOPLIST_FILE = "AirPark For Commuter/Info.plist";
+				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "AirPark.AirPark-For-Commuter";
+				PRODUCT_BUNDLE_IDENTIFIER = com.csc212.AirPark;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

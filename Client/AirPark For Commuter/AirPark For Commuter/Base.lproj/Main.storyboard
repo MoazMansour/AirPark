@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +13,7 @@
         <!--SignIn-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="SignIn" id="BYZ-38-t0r" customClass="ViewControllerSignIn" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SignIn" id="BYZ-38-t0r" customClass="SignInController" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Krm-FG-lOd"/>
                         <viewControllerLayoutGuide type="bottom" id="ytG-Fi-Cfs"/>
@@ -82,12 +82,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2689" y="-134"/>
+            <point key="canvasLocation" x="-2690" y="-134"/>
         </scene>
         <!--SignUp-->
         <scene sceneID="y79-Z6-0a8">
             <objects>
-                <viewController title="SignUp" id="GVd-uI-DyZ" customClass="ViewControllerSignUp" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SignUp" id="GVd-uI-DyZ" customClass="SignUpController" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ekt-PZ-CPH"/>
                         <viewControllerLayoutGuide type="bottom" id="jnO-5W-dOT"/>
@@ -437,7 +437,7 @@
         <!--HomepageMap-->
         <scene sceneID="kQM-YU-G6k">
             <objects>
-                <viewController title="HomepageMap" id="Pys-lV-ULh" customClass="ViewController" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="HomepageMap" id="Pys-lV-ULh" customClass="MainPageController" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XYH-6p-t16"/>
                         <viewControllerLayoutGuide type="bottom" id="kdL-vx-2oD"/>
@@ -622,7 +622,7 @@
         <!--HostMode-->
         <scene sceneID="oIt-nt-N5A">
             <objects>
-                <viewController title="HostMode" id="OnD-vf-hL3" customClass="ViewControllerHostMode" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="HostMode" id="OnD-vf-hL3" customClass="HostModeController" customModule="AirPark" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pcX-u5-Q7y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

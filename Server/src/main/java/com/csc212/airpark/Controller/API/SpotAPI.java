@@ -46,7 +46,6 @@ public class SpotAPI {
             Spot newSpot = new Spot(latitude, longitude, capacity, spotUser.getUserId());
             spotUser.addSpot(newSpot);
             userRepository.save(spotUser);
-            spotRepository.save(newSpot);
 
             return new ResponseStatus(0, "Created spot.");
         } catch (Exception e){

@@ -20,6 +20,23 @@ public class UserAPI {
     @Autowired
     private UserRepository userRepository;
 
+
+    @GetMapping("/api/user_host")
+    public UserHostFlag getUserHostMode(){
+        return new UserHostFlag(getActiveUser().isHost());
+    }
+
+    @PostMapping("/api/user_host")
+    public ResponseStatus setUserHostMode(@RequestParam("host") Boolean isHost){
+        try {
+            getActiveUser().setHost(isHost);
+            userRepository.save(getActiveUser());
+            return new ResponseStatus(0,"Set user host mode to "+isHost);
+        } catch (Exception e){
+            return new ResponseStatus(1,"Error: Could not set user host mode!");
+        }
+    }
+
     @PostMapping("/api/user")
     public ResponseStatus createUser(@RequestParam("username") String username, @RequestParam("password") String password){
 

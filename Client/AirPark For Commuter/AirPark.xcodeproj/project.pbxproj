@@ -17,6 +17,7 @@
 		578A168C1FC7891C00447D8C /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A168B1FC7891C00447D8C /* SignUpController.swift */; };
 		578A168E1FC7899400447D8C /* HostModeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A168D1FC7899400447D8C /* HostModeController.swift */; };
 		578A16901FC789B400447D8C /* MainPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578A168F1FC789B400447D8C /* MainPageController.swift */; };
+		57F013E71FC7C6940043B8B1 /* RestApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F013E61FC7C6940043B8B1 /* RestApiManager.swift */; };
 		D5736F201FBE401000636E6D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5736F1F1FBE401000636E6D /* MapKit.framework */; };
 		D5FFE4431FBCE4EE00CEF29E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5FFE4421FBCE4EE00CEF29E /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		578A168B1FC7891C00447D8C /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		578A168D1FC7899400447D8C /* HostModeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostModeController.swift; sourceTree = "<group>"; };
 		578A168F1FC789B400447D8C /* MainPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageController.swift; sourceTree = "<group>"; };
+		57F013E61FC7C6940043B8B1 /* RestApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApiManager.swift; sourceTree = SOURCE_ROOT; };
 		D5736F1F1FBE401000636E6D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D5FFE4421FBCE4EE00CEF29E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 				4C2C3B031FBA243C00DD02AF /* Model */,
 				4C2C3B051FBA244C00DD02AF /* Controller */,
 				4C2C3A9B1FBA1C8400DD02AF /* AppDelegate.swift */,
+				57F013E61FC7C6940043B8B1 /* RestApiManager.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				578A168E1FC7899400447D8C /* HostModeController.swift in Sources */,
 				578A16901FC789B400447D8C /* MainPageController.swift in Sources */,
 				578A168A1FC7890F00447D8C /* SignInController.swift in Sources */,
+				57F013E71FC7C6940043B8B1 /* RestApiManager.swift in Sources */,
 				4C2C3A9C1FBA1C8400DD02AF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,6 @@
     <author email="chrisd@u.rochester.edu">
         Chris Dalke
     </author>
-    <content src="index.html" />
+    <content src="login.html" />
     <access origin="*" />
 </widget>

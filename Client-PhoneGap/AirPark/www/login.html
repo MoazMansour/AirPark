@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Metadata -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+        <title>AirPark</title>
+
+        <!-- Static Resources -->
+        <link rel="stylesheet" href="/static/css/uikit.min.css" />
+        <link rel="stylesheet" href="/static/css/login.css" />
+        <link rel="stylesheet" href="/static/css/animate.css" />
+
+        <!-- Javascript -->
+        <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/uikit.min.js"></script>
+        <script type="text/javascript" src="/static/js/uikit-icons.min.js"></script>
+        <script type="text/javascript" src="/static/js/common.js"></script>
+        <script type="text/javascript" src="/static/js/login.js"></script>
+    </head>
+    <body>
+        <!-- LOGIN OVERLAY CONTAINER -->
+        <div id="login-overlay" class="page-canvas-wrapper">
+            <div class="nav-fullscreen-page" id="sign-in-page">
+                <div class="uk-light uk-padding">
+                    <h1>AirPark</h1>
+                    <p>Sign In to AirPark to find and share parking spots with your local community.</p>
+                </div>
+                <div class="dark-wrapper uk-width-1-1 uk-padding">
+                    <p id="login-failure"></p>
+                    <form autocomplete="off">
+                        <div class="uk-margin uk-width-1-1">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                <input id="login-username" class="uk-input" type="text" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="uk-margin uk-width-1-1">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon uk-form-icon" uk-icon="icon: lock"></span>
+                                <input id="login-password" class="uk-input" type="password" placeholder="Password">
+                            </div>
+                        </div>
+
+                        <button id="sign-in-button" class="uk-width-1-1 uk-button uk-button-secondary">Sign In</button>
+                        <button id="sign-up-button" class="uk-width-1-1 uk-button uk-button-secondary">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+            <div class="nav-fullscreen-page" id="sign-up-page">
+                <div class="uk-light uk-padding">
+                    <h1>AirPark</h1>
+                    <p>Sign Up to AirPark to start finding and sharing parking spots with your local community. Signing up is easy! Let's start with a username and password for your account.</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,10 +1,6 @@
-var isLoggedIn = false;
-var loggedInCredentials = "";
 var userObject;
-var isSigningIn = false;
 var currentPage = "";
 var searchResultMap;
-var baseUrl = "http://localhost:8080";
 
 var locSelectLastPage = "";
 var locSelectHasChosen = false;
@@ -19,84 +15,16 @@ var geoLocateLon = 0;
 var locSearchResultList = [];
 
 var searchRangeValue = 15;
-
-function refreshLoggedIn(){
-    if (isLoggedIn){
-        $("#login-overlay").hide();
-    } else {
-        $("#login-overlay").show();
-    }
-}
-
-function logOut(){
-    isLoggedIn = false;
-    loggedInCredentials = "";
-    refreshLoggedIn();
-}
-
-function logIn(username, password){
-    isLoggedIn = true;
-    loggedInCredentials = btoa(username + ":" + password);
-    console.log("Based64 encoded login credentials: "+loggedInCredentials);
-    navSet("search-nav");
-    refreshLoggedIn();
-}
-
-function tryLogin(){
-    isSigningIn = true;
-    $("#sign-in-button").text("Signing In...");
-
-    var username = $("#login-username").val();
-    var password = $("#login-password").val();
-    var tempCreds = btoa(username + ":" + password);
-
-    console.log("username = "+username);
-    console.log("password = "+password);
-
-    $.ajax({
-        url: baseUrl + "/api/user_active",
-        dataType: 'json',
-        success: function(result){
-            userObject = result;
-            loginSuccess();
-            logIn(username,password);
-        },
-        error: function(result){
-            loginFailure();
-        },
-        beforeSend: function (xhr){
-            //Attach HTTP basic header
-            xhr.setRequestHeader('Authorization', "Basic " + tempCreds);
-        }
-    });
-}
-
-function loginSuccess(){
-    $("#sign-in-button").text("Sign In");
-    isSigningIn = false;
-
-    // Hide login failure UI
-    $("#login-username").removeClass("uk-form-danger");
-    $("#login-password").removeClass("uk-form-danger");
-    $("#login-username").val("");
-    $("#login-password").val("");
-    $("#login-failure").hide();
-}
-
-function loginFailure(){
-    $("#sign-in-button").text("Sign In");
-    isSigningIn = false;
-
-    //show login failure UI
-    $("#login-username").addClass("uk-form-danger");
-    $("#login-password").addClass("uk-form-danger");
-    $("#login-username").val("");
-    $("#login-password").val("");
-    $("#login-failure").show().text("Failed to login. Please try again!");
-}
+var hostJoining = false;
 
 $(function(){
     $('form,input,select,textarea').attr("autocomplete", "off");
+
+    // Login guard: Redirect back to login page if the credentials aren't saved.
+    loginGuard();
+
+    // Generate sidebar
+    generateSidebar();
 
     //Find geolocation data for usage later
     GMaps.geolocate({
@@ -108,29 +36,11 @@ $(function(){
         }
       });
 
-    $("#home-nav-page").show();
-    addMenuClickListener("home-nav");
-    addMenuClickListener("search-nav");
-    addMenuClickListener("reservation-nav");
-    addMenuClickListener("profile-nav");
-    addMenuClickListener("host-activate-nav");
-    addMenuClickListener("spots-nav");
-    addMenuClickListener("rentals-nav");
-    addMenuClickListener("settings-nav");
+    $("#search-nav-page").show();
+
     //addMenuClickListener("sign-out-nav");
     $("#header-nav-home").click(function(){
         navSet("search-nav");
-    });
-
-    //Login handler
-    $("#sign-out-nav").click(function(){
-        UIkit.offcanvas($("#offcanvas-nav")).hide();
-        logOut();
-    });
-
-    $("#sign-out-settings-button").click(function(){
-        UIkit.offcanvas($("#offcanvas-nav")).hide();
-        logOut();
     });
 
     $("#sign-in-button").click(function(e){
@@ -142,7 +52,15 @@ $(function(){
 
     $("#sign-up-button").click(function(e){
         e.preventDefault();
+
+        $("#page-sign-in").hide();
+        $("#page-sign-up").show();
+
+        //$( '#page-sign-up' ).removeClass( 'fadeOutRight' ).show().addClass( 'fadeInRight' );
+        //$( '#page-sign-in' ).removeClass( 'fadeInRight' ).addClass( 'fadeOutRight' );
+
         //Try to sign up using the entered information
+        /*
         $.ajax({
             url: baseUrl + "/api/user",
             type: "POST",
@@ -158,6 +76,7 @@ $(function(){
                 UIkit.modal.alert(result.message);
             }
         });
+        */
     });
 
     $('#search-tabs').click(function () {
@@ -208,6 +127,72 @@ $(function(){
         },function(){});
     });
 
+})
+
+
+
+
+function addMenuClickListener(navId){
+    $("#"+navId).click(function(){
+        navSet(navId);
+    });
+}
+
+function addMenuClickListeners(){
+
+    addMenuClickListener("home-nav");
+    addMenuClickListener("search-nav");
+    addMenuClickListener("reservation-nav");
+    addMenuClickListener("profile-nav");
+    addMenuClickListener("host-activate-nav");
+    addMenuClickListener("spots-nav");
+    addMenuClickListener("rentals-nav");
+    addMenuClickListener("settings-nav");
+    //Login handler
+    $("#sign-out-nav").click(function(){
+        UIkit.offcanvas($("#offcanvas-nav")).hide();
+        logOut();
+    });
+}
+
+function generateSettingsPage(){
+    $("#settings-nav-page").html("<h3>Account Settings</h3>");
+    $("#settings-nav-page").append("<button id=\"set-home-button\" class=\"uk-button uk-button-default uk-width-1-1\">Set Default Location</button>");
+    $("#settings-nav-page").append("<button id=\"sign-out-settings-button\" class=\"uk-button uk-button-default uk-width-1-1 uk-margin\">Sign Out</button>");
+
+    //If host mode, show remove host button
+    if (userObject.host){
+        $("#settings-nav-page").append("<button id=\"remove-host-button\" class=\"uk-button uk-button-default uk-width-1-1\">Leave Host Mode</button>");
+        $("#remove-host-button").click(function(e){
+            e.preventDefault();
+            $("#remove-host-button").text("Leaving...");
+            $.ajax({
+                url: baseUrl + "/api/user_host",
+                type: "POST",
+                data: {
+                    host: false
+                },
+                dataType: 'json',
+                success: function(result){
+                    refreshUserObject(function(){
+                        UIkit.modal.alert("Unenrolled as a Host. Thanks for being a host on AirPark!");
+                        $("#remove-host-button").remove();
+                        refreshUserObject(function(){
+                            generateSidebar();
+                        });
+                    });
+                },
+                error: function(result){
+                    UIkit.modal.alert("Error: Could not unenroll as a Host! Please try again later.");
+                },
+                beforeSend: function (xhr){
+                    //Attach HTTP basic header
+                    xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+                }
+            });
+        });
+    }
+
     $("#set-home-button").click(function(e){
         e.preventDefault();
         locationSelectionModal("Select Work Location",function(data){
@@ -236,13 +221,49 @@ $(function(){
         },function(){});
     });
 
-    //DEBUG
-    logIn("test","test");
-})
+    $("#sign-out-settings-button").click(function(){
+        UIkit.offcanvas($("#offcanvas-nav")).hide();
+        logOut();
+    });
+}
 
-function addMenuClickListener(navId){
-    $("#"+navId).click(function(){
-        navSet(navId);
+function generateJoinHostPage(){
+    $("#host-activate-text").html("");
+    $("#host-activate-text").append("<h3>Become a Host</h3>");
+    $("#host-activate-text").append("<p>Become a host on AirPark to share your driveway with others.");
+    $("#host-activate-text").append("AirPark benefits the local community, relieving traffic and");
+    $("#host-activate-text").append("earning you passive income!</p>");
+    $("#host-activate-text").append("<button id=\"join-host\" class=\"uk-button uk-button-default uk-width-1-1 uk-margin\">Join as Host</button>");
+    $("#host-activate-text").append("<br><a><i>Terms & Conditions</i></a>");
+    $("#join-host").click(function(e){
+        e.preventDefault();
+        if (!hostJoining){
+            hostJoining = true;
+            $("#join-host").text("Joining...");
+            $.ajax({
+                url: baseUrl + "/api/user_host",
+                type: "POST",
+                data: {
+                    host: true
+                },
+                dataType: 'json',
+                success: function(result){
+                    refreshUserObject(function(){
+                        $("#host-activate-text").html("<h3>Welcome!</h3><p>Welcome to Hosting on AirPark. Let's get started by adding some parking spots. Open the menu to the left and navigate to <i>My Spots</i> to begin.")
+                        generateSidebar();
+                        hostJoining = false;
+                    });
+                },
+                error: function(result){
+                    UIkit.modal.alert("Error: Could not join as a Host! Please try again later.");
+                    hostJoining = false;
+                },
+                beforeSend: function (xhr){
+                    //Attach HTTP basic header
+                    xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+                }
+            });
+        }
     });
 }
 
@@ -267,6 +288,13 @@ function navSet(navId){
             break;
         case "search-nav":
             displaySearchResults();
+            break;
+        case "host-activate-nav":
+            generateJoinHostPage();
+            break;
+        case "settings-nav":
+            generateSettingsPage();
+
             break;
     }
 }

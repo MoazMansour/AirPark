@@ -1,0 +1,49 @@
+body {
+
+}
+
+html {
+    background-color: #004080;
+    overflow: hidden;
+}
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+.nav-fullscreen-page {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;
+    box-sizing: border-box;
+}
+
+.page-canvas-wrapper {
+    background-color: #004080;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#login-overlay {
+    z-index: 100;
+}
+
+.dark-wrapper {
+    background-color: rgba(0,0,0,0.4);
+}
+
+#login-failure {
+    color: #ff4949;
+}
+
+#sign-in-button {
+    margin-bottom: 8px;
+}

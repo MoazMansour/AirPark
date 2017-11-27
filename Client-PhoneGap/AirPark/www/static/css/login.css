@@ -3,7 +3,7 @@ body {
 }
 
 html {
-    background-color: #004080;
+    background-color: #0093ff;
     overflow: hidden;
 }
 body, html {
@@ -24,7 +24,7 @@ body, html {
 }
 
 .page-canvas-wrapper {
-    background-color: #004080;
+    background-color: #0093ff;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -44,6 +44,6 @@ body, html {
     color: #ff4949;
 }
 
-#sign-in-button {
+.padding-bottom-button {
     margin-bottom: 8px;
 }

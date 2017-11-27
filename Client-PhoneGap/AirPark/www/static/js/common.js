@@ -80,10 +80,12 @@ function reloadHome(){
     window.location="index.html";
 }
 
-function reloadHost(){
-    window.location="host.html";
-}
-
-function loadHostOnboard(){
-    window.location="hostOnboard.html";
+//blocking sleep, use only for debug!
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
 }

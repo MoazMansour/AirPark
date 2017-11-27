@@ -1,4 +1,5 @@
 var isSigningIn = false;
+var isSigningUp = false;
 
 $(function(){
 
@@ -15,7 +16,50 @@ $(function(){
     $("#sign-up-button").click(function(e){
         e.preventDefault();
         $("#sign-in-page").hide();
-        $("#sign-up-page").show().slideDown();
+        $("#sign-up-page").show();
+        $("#sign-up-username").val("");
+        $("#sign-up-password").val("");
+        $("#sign-up-password-confirm").val("");
+    });
+
+    $("#sign-up-cancel").click(function(e){
+        e.preventDefault();
+        $("#sign-in-page").show();
+        $("#sign-up-page").hide();
+    });
+
+    $("#sign-up-button-2").click(function(e){
+        e.preventDefault();
+        if (!isSigningUp){
+            if ($("#sign-up-password").val() != $("#sign-up-password-confirm").val()){
+                UIkit.modal.alert("Password Confirmation did not match!");
+                return;
+            }
+            $("#sign-up-button-2").text("Signing up...");
+
+            $.ajax({
+                url: baseUrl + "/api/user",
+                type: "POST",
+                data: {
+                        username:$("#sign-up-username").val(),
+                        password:$("#sign-up-password").val()
+                },
+                dataType: 'json',
+                success: function(result){
+                    UIkit.modal.alert(result.message);
+                    $("#sign-in-page").show();
+                    $("#sign-up-page").hide();
+                    $("#sign-up-button-2").text("Sign Up");
+                    isSigningUp = false;
+                },
+                error: function(result){
+                    UIkit.modal.alert(result.message);
+                    $("#sign-up-button-2").text("Sign Up");
+                    isSigningUp = false;
+                }
+            });
+            isSigningUp = true;
+        }
     });
 
     $("#sign-in-button").click(function(e){
@@ -28,7 +72,7 @@ $(function(){
             $("#sign-in-button").text("Signing In...");
             tryLogin();
         }
-    })
+    });
 
 });
 
@@ -36,13 +80,6 @@ function redirect(){
     window.location="index.html";
 }
 
-function showSignInPage(){
-
-}
-
-function showSignUpPage(){
-
-}
 
 function tryLogin(){
     if (!isSigningIn){

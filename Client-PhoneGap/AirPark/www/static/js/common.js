@@ -59,7 +59,7 @@ function refreshUserObject(success){
             success();
         },
         error: function(result){
-            console.log("fail");
+            console.log("failed to update user object");
             console.log(result);
         },
         beforeSend: function (xhr){

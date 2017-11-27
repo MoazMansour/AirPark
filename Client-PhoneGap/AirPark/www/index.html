@@ -65,39 +65,43 @@
             </div>
 
             <!-- SEARCH PAGE -->
-            <div class="nav-page uk-padding" id="search-nav-page">
-                <h3>Search Parking Spots</h3>
-                <form>
-                    <fieldset class="uk-fieldset">
-                        <div class="uk-margin">
-                            Filter range (walking duration):<br>
-                            <input id="search-range" class="uk-range uk-width-1-2" type="range" value="15" min="0" max="60" step="1">
-                            <span class="uk-width-1-2"><span id="search-range-label">15</span> minutes</span>
-                        </div>
-                        <!--<button id="search-set-home" class="uk-button uk-button-default uk-width-1-1">Set Work Location</button>-->
-                        <!--<button id="do-search" class="uk-button uk-button-default uk-width-1-1">Search</button>-->
-                        <div>
-                            <ul id="search-tabs" class="uk-child-width-expand" uk-tab style="margin-bottom: 5px;">
-                                <li class="uk-active"><a href="#">Map</a></li>
-                                <li><a href="#">List</a></li>
-                            </ul>
+            <div class="nav-page no-padding" id="search-nav-page">
+                <div class="loc-map-search-frame">
+                    <div class="loc-map-search" id="search-result-map">
+                    </div>
+                    <div id="loc-map-search-button">
+                        Search
+                    </div>
+                    <div id="loc-map-search-opts">
+                        <i>Search Options</i>
 
-                            <ul class="uk-switcher uk-margin" style="margin-top: 0px !important;">
-                                <li>
-                                <div class="loc-map-frame">
-                                    <div class="loc-map" id="search-result-map">
+                            <form>
+                                <fieldset class="uk-fieldset">
+                                    <div class="uk-margin">
+                                        Walking Range:<br>
+                                        <input id="search-range" class="uk-range uk-width-1-2" type="range" value="15" min="0" max="60" step="1">
+                                        <span class="uk-width-1-2"><span id="search-range-label">15</span> minutes</span>
                                     </div>
-                                </div>
+                                    <div>
+                                        <ul id="search-tabs" class="uk-child-width-expand" uk-tab style="margin-bottom: 5px;">
+                                            <li class="uk-active"><a href="#">Map</a></li>
+                                            <li><a href="#">List</a></li>
+                                        </ul>
 
-                                </li>
-                                <li>
-                                    <div id="search-spot-container">
+                                        <ul class="uk-switcher uk-margin" style="margin-top: 0px !important;">
+                                            <li>
+
+                                            </li>
+                                            <li>
+                                                <div id="search-spot-container">
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </fieldset>
-                </form>
+                                </fieldset>
+                            </form>
+                    </div>
+                </div>
             </div>
 
             <!-- SEARCH RESULTS PAGE -->
@@ -114,7 +118,6 @@
 
             <!-- PROFILE PAGE -->
             <div class="nav-page" id="profile-nav-page">
-                <h1>Profile</h1>
             </div>
 
             <!-- HOST ACTIVATION PAGE -->

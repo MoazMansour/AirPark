@@ -102,8 +102,8 @@ public class SpotAPI {
         }
     }
 
-    @GetMapping(value = "/api/spots",params = {"latitude", "longitude"})
-    public String getAddressFromCoordinates( @RequestParam("latitude") double latitude,
+    @GetMapping(value = "/api/spot/address",params = {"latitude", "longitude"})
+    public GeocodingResult getAddressFromCoordinates( @RequestParam("latitude") double latitude,
                                                  @RequestParam("longitude") double longitude)
             throws InterruptedException, ApiException, IOException {
         return findAddressFromCoordinates(latitude, longitude);
@@ -195,17 +195,17 @@ public class SpotAPI {
         return validSpots;
     }
 
-    private static String findAddressFromCoordinates(double latitude, double longitude)
+    private static GeocodingResult findAddressFromCoordinates(double latitude, double longitude)
             throws InterruptedException, ApiException, IOException {
         GeocodingApiRequest request = new GeocodingApiRequest(geoApiContext);
 
         GeocodingResult[] result = request.latlng(new LatLng(latitude, longitude)).await();
 
         if(result.length > 0) {
-            return result[0].formattedAddress;
+            return result[0];
         }
 
-        return "";
+        return null;
     }
 
     /**

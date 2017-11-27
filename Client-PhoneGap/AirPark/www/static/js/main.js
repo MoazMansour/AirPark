@@ -227,6 +227,72 @@ function generateSettingsPage(){
     });
 }
 
+function generateReservationsPage() {
+    // display active reservations
+    $("#active-reservations-container").html("");
+    $("#expired-reservations-container").html("");
+    $.ajax({
+      url: baseUrl + "/api/reservations",
+      type: "GET",
+      data: {
+        renter: userObject.userId,
+        activeStatus: true
+      },
+      dataType: 'json',
+      success: function(result) {
+          for (var i = 0; i < result.length; i++){
+              // get spot
+              var spot = result[i];
+              getSpotBySpotId(result[i].spotId, function(spotObject) {
+                  getAddressFromLatLong(spotObject.latitude, spotObject.longitude, function(address) {
+                    var date = new Date(spot.expirationTime * 1000);
+                    var str = "Address: " + address.formattedAddress + "<br>" + "Expires: " + date + "<hr>";
+                    $("#active-reservations-container").append(str);
+                  });
+              });
+          }
+      },
+      error: function(result){
+          UIkit.modal.alert(result.message);
+      },
+      beforeSend: function (xhr){
+          //Attach HTTP basic header
+          xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+      }
+    });
+
+    // display expired reservations
+    $.ajax({
+      url: baseUrl + "/api/reservations",
+      type: "GET",
+      data: {
+        renter: userObject.userId,
+        activeStatus: false
+      },
+      dataType: 'json',
+      success: function(result) {
+          for (var i = 0; i < result.length; i++){
+              // get spot
+              var spot = result[i];
+              getSpotBySpotId(result[i].spotId, function(spotObject) {
+                  getAddressFromLatLong(spotObject.latitude, spotObject.longitude, function(address) {
+                    var date = new Date(spot.expirationTime * 1000);
+                    var str = "Address: " + address.formattedAddress + "<br>" + "Expired: " + date + "<hr>";
+                    $("#expired-reservations-container").append(str);
+                  });
+              });
+          }
+      },
+      error: function(result){
+          UIkit.modal.alert(result.message);
+      },
+      beforeSend: function (xhr){
+          //Attach HTTP basic header
+          xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+      }
+    });
+}
+
 function generateJoinHostPage(){
     $("#host-activate-text").html("");
     $("#host-activate-text").append("<h3>Become a Host</h3>");
@@ -294,7 +360,8 @@ function navSet(navId){
             break;
         case "settings-nav":
             generateSettingsPage();
-
+        case "reservation-nav":
+            generateReservationsPage();
             break;
     }
 }
@@ -488,7 +555,45 @@ function locationSelectionModal(description, confirm, cancel){
     });
 }
 
+function getSpotBySpotId(spotId, success_callback) {
+  $.ajax({
+    url: baseUrl + "/api/spot/" + spotId,
+    type: "GET",
+    dataType: 'json',
+    success: function(result) {
+        success_callback(result);
+    },
+    error: function(result){
+        UIkit.modal.alert(result.message);
+    },
+    beforeSend: function (xhr){
+        //Attach HTTP basic header
+        xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+    }
+  });
+}
 
+function getAddressFromLatLong(lat, long, success_callback) {
+  $.ajax({
+    url: baseUrl + "/api/spot/address",
+    type: "GET",
+    data: {
+      latitude: lat,
+      longitude: long
+    },
+    dataType: 'json',
+    success: function(result) {
+      success_callback(result);
+    },
+    error: function(result){
+        UIkit.modal.alert(result.message);
+    },
+    beforeSend: function (xhr){
+        //Attach HTTP basic header
+        xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+    }
+  });
+}
 
 //blocking sleep, use only for debug!
 function sleep(milliseconds) {

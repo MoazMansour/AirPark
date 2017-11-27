@@ -90,6 +90,19 @@ public class UserAPI {
         return new LatitudeLongitudePair(locUser.getLatitude(),locUser.getLongitude());
     }
 
+    @PatchMapping("/api/user/{userId}")
+    public ResponseStatus updateUserData(@PathVariable("userId") Integer userId,@RequestParam("name") String name, @RequestParam("phone_number") String phoneNumber){
+        try {
+            User locUser = userRepository.findByUserId(userId);
+            locUser.setName(name);
+            locUser.setPhoneNumber(phoneNumber);
+            userRepository.save(locUser);
+            return new ResponseStatus(0,"Updated user profile!");
+        } catch (Exception e){
+            return new ResponseStatus(1,"Could not update user profile: "+e.getMessage());
+        }
+    }
+
     @PatchMapping("/api/user/{userId}/location")
     public ResponseStatus updateUserLocation(@PathVariable("userId") Integer userId,@RequestParam("latitude") Double latitude, @RequestParam("longitude") Double longitude){
         try {

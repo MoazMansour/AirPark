@@ -16,6 +16,8 @@ var locSearchResultList = [];
 
 var searchRangeValue = 15;
 var hostJoining = false;
+var isSearching = false;
+var isUpdatingProfile = false;
 
 $(function(){
     $('form,input,select,textarea').attr("autocomplete", "off");
@@ -36,47 +38,11 @@ $(function(){
         }
       });
 
-    $("#search-nav-page").show();
+      navSet("search-nav");
 
     //addMenuClickListener("sign-out-nav");
     $("#header-nav-home").click(function(){
         navSet("search-nav");
-    });
-
-    $("#sign-in-button").click(function(e){
-        e.preventDefault();
-        if (isSigningIn == false){
-            tryLogin();
-        }
-    });
-
-    $("#sign-up-button").click(function(e){
-        e.preventDefault();
-
-        $("#page-sign-in").hide();
-        $("#page-sign-up").show();
-
-        //$( '#page-sign-up' ).removeClass( 'fadeOutRight' ).show().addClass( 'fadeInRight' );
-        //$( '#page-sign-in' ).removeClass( 'fadeInRight' ).addClass( 'fadeOutRight' );
-
-        //Try to sign up using the entered information
-        /*
-        $.ajax({
-            url: baseUrl + "/api/user",
-            type: "POST",
-            data: {
-                    username:$("#login-username").val(),
-                    password:$("#login-password").val()
-            },
-            dataType: 'json',
-            success: function(result){
-                UIkit.modal.alert(result.message);
-            },
-            error: function(result){
-                UIkit.modal.alert(result.message);
-            }
-        });
-        */
     });
 
     $('#search-tabs').click(function () {
@@ -96,7 +62,6 @@ $(function(){
     $("#search-range").on("change", function() {
         searchRangeValue = $("#search-range").val();
         $("#search-range-label").text(searchRangeValue);
-        displaySearchResults();
     });
 
     //Add spot functionality
@@ -155,10 +120,35 @@ function addMenuClickListeners(){
     });
 }
 
+function generateSearchPage(){
+    $("#search-result-map").removeAttr("style");
+    searchResultMap = new GMaps({
+        div: '#search-result-map',
+        lat: userObject.latitude,
+        lng: userObject.longitude
+    });
+    //Add home marker
+    searchResultMap.addMarker({
+        lat: userObject.latitude,
+        lng: userObject.longitude,
+        title: "Your Home",
+        icon  : '/static/img/blue.png'
+    });
+    $("#loc-map-search-button").off().click(function(){
+        if (!isSearching){
+            $("#loc-map-search-button").text("Searching...");
+            console.log("search");
+            displaySearchResults();
+            isSearching = true;
+        }
+    });
+}
+
 function generateSettingsPage(){
-    $("#settings-nav-page").html("<h3>Account Settings</h3>");
-    $("#settings-nav-page").append("<button id=\"set-home-button\" class=\"uk-button uk-button-default uk-width-1-1\">Set Default Location</button>");
-    $("#settings-nav-page").append("<button id=\"sign-out-settings-button\" class=\"uk-button uk-button-default uk-width-1-1 uk-margin\">Sign Out</button>");
+    var htmlString = "<h3>Account Settings</h3>";
+    htmlString += "<button id=\"set-home-button\" class=\"uk-button uk-button-default uk-width-1-1\">Set Default Location</button>";
+    htmlString += "<button id=\"sign-out-settings-button\" class=\"uk-button uk-button-default uk-width-1-1 uk-margin\">Sign Out</button>"
+    $("#settings-nav-page").html(htmlString);
 
     //If host mode, show remove host button
     if (userObject.host){
@@ -294,13 +284,14 @@ function generateReservationsPage() {
 }
 
 function generateJoinHostPage(){
-    $("#host-activate-text").html("");
-    $("#host-activate-text").append("<h3>Become a Host</h3>");
-    $("#host-activate-text").append("<p>Become a host on AirPark to share your driveway with others.");
-    $("#host-activate-text").append("AirPark benefits the local community, relieving traffic and");
-    $("#host-activate-text").append("earning you passive income!</p>");
-    $("#host-activate-text").append("<button id=\"join-host\" class=\"uk-button uk-button-default uk-width-1-1 uk-margin\">Join as Host</button>");
-    $("#host-activate-text").append("<br><a><i>Terms & Conditions</i></a>");
+    var htmlString = "";
+    htmlString += "<h3>Become a Host</h3>";
+    htmlString += "<p>Become a host on AirPark to share your driveway with others.";
+    htmlString += "AirPark benefits the local community, relieving traffic and ";
+    htmlString +="earning you passive income!</p>";
+    htmlString +="<button id=\"join-host\" class=\"uk-button uk-button-default uk-width-1-1 uk-margin\">Join as Host</button>";
+    htmlString +="<br><a><i>Terms & Conditions</i></a>";
+    $("#host-activate-text").html(htmlString);
     $("#join-host").click(function(e){
         e.preventDefault();
         if (!hostJoining){
@@ -333,6 +324,141 @@ function generateJoinHostPage(){
     });
 }
 
+function generateProfileViewPage(){
+
+    var htmlString = `
+        <button id="edit-profile" class="uk-button uk-button-default uk-margin-small uk-width-1-1">Edit Profile</button>
+        <div class="uk-card uk-card-default uk-width-1-1">
+        <div class="uk-card-header">
+            <div class="uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                    <img class="uk-border-circle" width="50" height="50" src="/static/img/profile_img.png">
+                </div>
+                <div class="uk-width-expand">
+                    <h3 class="uk-card-title uk-margin-remove-bottom">`+userObject.username+`</h3>
+                    <p id="profile-location" class="uk-text-meta uk-margin-remove-top">Commuter`+(userObject.host ? ", Host" : "")+`</p>
+                </div>
+            </div>
+        </div>
+        <div class="uk-card-body">
+            <dl class="uk-description-list">
+                <dt>Name</dt>
+                <dd>`+userObject.name+`</dd>
+                <dt>Phone Number</dt>
+                <dd>`+userObject.phoneNumber+`</dd>
+                <dt>Rating</dt>
+                <dd>
+                    <span class="star" uk-icon="icon: star"></span>
+                    <span class="star" uk-icon="icon: star"></span>
+                    <span class="star" uk-icon="icon: star"></span>
+                    <span class="star" uk-icon="icon: star"></span>
+                    <span class="star" uk-icon="icon: star"></span><br>
+                    <i id="profile-star-desc" class="uk-text-meta">To earn a higher rating, use AirPark to reserve a spot! Hosts
+                    and Commuters rate each other after each rental.</i>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    `;
+    $("#profile-nav-page").html(htmlString);
+    $("#edit-profile").click(function(e){
+        generateProfileEditPage();
+        e.preventDefault();
+    });
+
+}
+
+function generateProfileEditPage(){
+    var htmlString = `
+    <div class="uk-grid-small uk-child-width-expand uk-margin-small" uk-grid>
+        <div class="uk-width-1-2">
+            <button id="edit-profile-save" class="uk-button uk-button-default uk-width-1-1">Save</button>
+        </div>
+        <div class="uk-width-1-2">
+            <button id="edit-profile-cancel" class="uk-button uk-button-default uk-width-1-1">Cancel</button>
+        </div>
+    </div>
+    <div class="uk-card uk-card-default uk-width-1-1">
+        <div class="uk-card-header">
+            <div class="uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                    <img class="uk-border-circle" width="50" height="50" src="/static/img/profile_img.png">
+                </div>
+                <div class="uk-width-expand">
+                    <h3 class="uk-card-title uk-margin-remove-bottom">`+userObject.username+`</h3>
+                    <p id="profile-location" class="uk-text-meta uk-margin-remove-top">`+"Rochester, NY"+`</p>
+                </div>
+            </div>
+        </div>
+        <form>
+            <div class="uk-card-body">
+                <dl class="uk-description-list">
+                    <dt>Name</dt>
+                    <dd>
+                    <div class="uk-margin uk-dark-fix">
+                        <input id="profile-name" class="uk-input" type="text" placeholder="Name">
+                    </div>
+                    </dd>
+                    <dt>Phone Number</dt>
+                    <dd>
+                    <div class="uk-margin uk-dark-fix">
+                        <input id="profile-phone-number" class="uk-input" type="text" placeholder="Phone #">
+                    </div>
+                    </dd>
+                </dl>
+            </div>
+        </form>
+    </div>
+    `;
+    $("#profile-nav-page").html(htmlString);
+    $("#profile-name").val(userObject.name);
+    $("#profile-phone-number").val(userObject.phoneNumber);
+
+    $("#edit-profile-save").click(function(e){
+        e.preventDefault();
+
+        if (!isUpdatingProfile){
+            isUpdatingProfile = true;
+            $("#edit-profile-save").text("Saving...")
+            // Get the changes, save them to the user object via server call.
+            $.ajax({
+                url: baseUrl + "/api/user/"+userObject.userId,
+                type: "PATCH",
+                data: {
+                        name:$("#profile-name").val(),
+                        phone_number:$("#profile-phone-number").val()
+                },
+                dataType: 'json',
+                success: function(result){
+                    //Success
+                    refreshUserObject(function(result){
+                        UIkit.modal.alert("Updated user profile!");
+                        generateProfileViewPage();
+                        isUpdatingProfile = false;
+                    });
+                },
+                error: function(result){
+                    // Failure
+                    UIkit.modal.alert("Could not update user profile! Please try again later.");
+                    generateProfileViewPage();
+                    isUpdatingProfile = false;
+                },
+                beforeSend: function (xhr){
+                    //Attach HTTP basic header
+                    xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+                }
+            });
+
+
+        }
+    })
+    $("#edit-profile-cancel").click(function(e){
+        e.preventDefault();
+        generateProfileViewPage();
+    })
+
+}
+
 function navSet(navId){
     currentPage = navId;
     $(".nav-page").hide();
@@ -353,10 +479,13 @@ function navSet(navId){
             locSelectLongitude = 0;
             break;
         case "search-nav":
-            displaySearchResults();
+            generateSearchPage();
             break;
         case "host-activate-nav":
             generateJoinHostPage();
+            break;
+        case "profile-nav":
+            generateProfileViewPage();
             break;
         case "settings-nav":
             generateSettingsPage();
@@ -367,36 +496,32 @@ function navSet(navId){
 }
 
 function displaySearchResults(){
-    $("#search-result-map").removeAttr("style");
-    searchResultMap = new GMaps({
-        div: '#search-result-map',
-        lat: userObject.latitude,
-        lng: userObject.longitude
-    });
-
     var searchData = {
         latitude: userObject.latitude,
         longitude: userObject.longitude,
-        walkingDuration: $("#search-range").val()
+        walkingDuration: 15
     };
-
+    //$("#search-range").val()
     $.ajax({
         url: baseUrl + "/api/spots",
         type: "GET",
         dataType: 'json',
         data: searchData,
         success: function(result){
+            console.log("Search succeeded");
+            searchResultMap.removeMarkers(); //remove all markers
             //Clear list
-            $("#search-spot-container").html("");
+            //$("#search-spot-container").html("");
             //Add home marker
             searchResultMap.addMarker({
                 lat: userObject.latitude,
                 lng: userObject.longitude,
-                title: "Your Work",
+                title: "Your Home",
                 icon  : '/static/img/blue.png'
             });
             for (var i = 0; i < result.length; i++){
                 //Add the spot to the map
+
                 searchResultMap.addMarker({
                     lat: result[i].spot.latitude,
                     lng: result[i].spot.longitude,
@@ -405,6 +530,7 @@ function displaySearchResults(){
                 });
 
                 //Add the spot to the list
+                /*
                 var staticImgLink = GMaps.staticMapURL({
                   size: [100, 100],
                   lat: result[i].spot.latitude,
@@ -412,8 +538,9 @@ function displaySearchResults(){
                   markers: [
                     {lat: result[i].spot.latitude, lng: result[i].spot.longitude, size: 'small'}
                   ]
-                });
+              });*/
 
+                /*
                 var newSpotListElement = `
                 <div class="spot-card uk-card uk-card-small uk-card-default uk-card-body uk-width-1-1 uk-margin">
                     <div class="uk-card-badge uk-label uk-light">`+Math.round(result[i].duration)+` MINS</div>
@@ -427,11 +554,17 @@ function displaySearchResults(){
                     <img class="spot-display-image" src=`+staticImgLink+`/>
                 </div>`;
 
-                $("#search-spot-container").append($(newSpotListElement));
+
+                $("#search-spot-container").append($(newSpotListElement));*/
             }
+            $("#loc-map-search-button").text("Search");
+            isSearching = false;
         },
         error: function(result){
-            UIkit.modal.alert(result.message);
+            //UIkit.modal.alert(result.message);
+            console.log("Search failed");
+            $("#loc-map-search-button").text("Search");
+            isSearching = false;
         },
         beforeSend: function (xhr){
             //Attach HTTP basic header

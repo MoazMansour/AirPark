@@ -57,6 +57,13 @@ public class User implements Comparable<User>, Serializable, UserDetails {
     @NotNull
     private Double longitude = -77.62965202331543;
 
+    //User profile data
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
     @Id
     @GeneratedValue
     @Column(name = "userId", unique = true, updatable = false)

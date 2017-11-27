@@ -33,6 +33,10 @@ body, html {
     box-sizing: border-box;
 }
 
+.no-padding {
+    padding: 0px !important;
+}
+
 .nav-fullscreen-page {
     position: absolute;
     top: 0;
@@ -88,10 +92,6 @@ body, html {
     color: #7b7b7b;
 }
 
-#search-result-map {
-    height: 400px;
-}
-
 #sign-up-button {
     margin-top: 20px;
 }
@@ -109,4 +109,66 @@ body, html {
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+
+.loc-map-search-frame {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(200,200,200,1.0);
+}
+
+.loc-map-search {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#profile-star-desc, #profile-location {
+    color: rgba(0,0,0,0.5);
+}
+
+/*
+.star {
+    color: yellow;
+}*/
+
+.uk-dark-fix {
+    background-color: #545454;
+}
+
+#loc-map-search-opts {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    background-color: rgba(34, 34, 34, 0.83);
+    text-align: center;
+    padding: 5px;
+    height: 100px;
+    margin:0px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.5);
+}
+
+#loc-map-search-button {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    background-color: rgba(50, 145, 200, 0.73);
+    color: black;
+    text-align: center;
+    padding: 5px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+    cursor: pointer;
 }

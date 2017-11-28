@@ -919,12 +919,18 @@ function showSpotDetails(spot){
 
 function showSpotReserve1(){
     var htmlString = `
-    <h3>Choose Time Range</h3>
+
+    <h3>Choose Expiration Time</h3>
+    <div id="date_picker"> </div>
     <hr>
     `
     showDetailModal(htmlString, null, null, function(){
         showSpotReserve2();
     });
+
+    $(function(){
+			$('#date_picker').dtpicker();
+		});
 }
 
 function showSpotReserve2(){

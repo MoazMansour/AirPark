@@ -113,13 +113,12 @@
 
             <!-- RESERVATION PAGE -->
             <div class="nav-page" id="reservation-nav-page">
-                <h1>Reservations</h1>
                 <h3>Active Reservations</h3>
-                <span id="active-reservations-container">
-                </span>
-                <h3>Reservation History</h3>
-                <span id="expired-reservations-container">
-                </span>
+                <div class="uk-card uk-card-small uk-card-default uk-card-body uk-margin" id="active-reservations-container">
+                </div>
+                <h3>Active Reservations</h3>
+                <div class="uk-card uk-card-small uk-card-default uk-card-body uk-margin" id="expired-reservations-container">
+                </div>
             </div>
 
             <!-- PROFILE PAGE -->
@@ -140,9 +139,17 @@
                 </div>
             </div>
 
-            <!-- COMMUTER RENTALS PAGE -->
+            <!-- HOST RENTALS PAGE -->
             <div class="nav-page" id="rentals-nav-page">
                 <h1>Rentals</h1>
+                <div class="uk-card uk-card-small uk-card-default uk-card-body uk-margin">
+                  <h3 class="uk-card-title">Active Rentals</h3>
+                  <div class="uk-card-body" id="active-rentals-container"></div>
+                </div>
+                <div class="uk-card uk-card-small uk-card-default uk-card-body uk-margin">
+                  <h3 class="uk-card-title">Rental History</h3>
+                  <div class="uk-card-body" id="expired-rentals-container"></div>
+                </div>
             </div>
 
             <!-- SETTINGS PAGE -->

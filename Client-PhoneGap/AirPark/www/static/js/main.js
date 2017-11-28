@@ -20,6 +20,8 @@ var hostJoining = false;
 var isSearching = false;
 var isUpdatingProfile = false;
 
+var spotInFocus;
+
 $(function() {
   $('form,input,select,textarea').attr("autocomplete", "off");
 
@@ -872,7 +874,7 @@ function getAddressFromLatLong(lat, long, success_callback) {
 }
 
 function showSpotDetails(spot){
-    console.log(spot);
+  spotInFocus = spot;
     $("#detail-modal").addClass("loading-icon");
     var htmlString = "";
     showDetailModal(htmlString, null, null);
@@ -919,11 +921,9 @@ function showSpotDetails(spot){
 
 function showSpotReserve1(){
     var htmlString = `
-
     <h3>Choose Expiration Time</h3>
     <div id="date_picker"> </div>
-    <hr>
-    `
+    <hr>    `
     showDetailModal(htmlString, null, null, function(){
         showSpotReserve2();
     });
@@ -978,6 +978,7 @@ function showSpotReserve2(){
     </form>
     `
     showDetailModal(htmlString, null, null, function(){
+      addReservation(spotInFocus.spotId, 1, 1511879731);
         UIkit.modal.alert("Spot Reserved! The Host will approve your reservation. View your reservation status and check into the spot using the My Reservations page.");
         hideDetailModal();
         navSet("reservation-nav");
@@ -1053,6 +1054,23 @@ function cancelReservation(reservationId, success){
         xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
       }
     })
+}
+
+function addReservation(spotId, startTime, expirationTime) {
+  $.ajax({
+    url: baseUrl + "/api/reservation",
+    type: "POST",
+    data: {
+      spotId: spotId,
+      startTime: startTime,
+      expirationTime: expirationTime
+    },
+    dataType: 'json',
+    beforeSend: function(xhr) {
+      //Attach HTTP basic header
+      xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+    }
+  })
 }
 
 function confirmReservation(reservationId, response) {

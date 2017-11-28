@@ -15,6 +15,7 @@ var geoLocateLon = 0;
 var locSearchResultList = [];
 
 var searchRangeValue = 15;
+
 var hostJoining = false;
 var isSearching = false;
 var isUpdatingProfile = false;
@@ -62,6 +63,7 @@ $(function(){
     $("#search-range").on("change", function() {
         searchRangeValue = $("#search-range").val();
         $("#search-range-label").text(searchRangeValue);
+        displaySearchResults();
     });
 
     //Add spot functionality
@@ -127,13 +129,7 @@ function generateSearchPage(){
         lat: userObject.latitude,
         lng: userObject.longitude
     });
-    //Add home marker
-    searchResultMap.addMarker({
-        lat: userObject.latitude,
-        lng: userObject.longitude,
-        title: "Your Home",
-        icon  : '/static/img/blue.png'
-    });
+    mapAddHomeMarker();
     $("#loc-map-search-button").off().click(function(){
         if (!isSearching){
             $("#loc-map-search-button").text("Searching...");
@@ -480,6 +476,7 @@ function navSet(navId){
             break;
         case "search-nav":
             generateSearchPage();
+            displaySearchResults();
             break;
         case "host-activate-nav":
             generateJoinHostPage();
@@ -499,7 +496,7 @@ function displaySearchResults(){
     var searchData = {
         latitude: userObject.latitude,
         longitude: userObject.longitude,
-        walkingDuration: 15
+        walkingDuration: searchRangeValue
     };
     //$("#search-range").val()
     $.ajax({
@@ -510,25 +507,12 @@ function displaySearchResults(){
         success: function(result){
             console.log("Search succeeded");
             searchResultMap.removeMarkers(); //remove all markers
+            searchResultMap.removeOverlays(); // remove all overlays
             //Clear list
             //$("#search-spot-container").html("");
-            //Add home marker
-            searchResultMap.addMarker({
-                lat: userObject.latitude,
-                lng: userObject.longitude,
-                title: "Your Home",
-                icon  : '/static/img/blue.png'
-            });
             for (var i = 0; i < result.length; i++){
                 //Add the spot to the map
-
-                searchResultMap.addMarker({
-                    lat: result[i].spot.latitude,
-                    lng: result[i].spot.longitude,
-                    title: "Spot "+result[i].spot.spotId,
-                    icon  : '/static/img/red.png'
-                });
-
+                addSpotToMap(result[i].spot);
                 //Add the spot to the list
                 /*
                 var staticImgLink = GMaps.staticMapURL({
@@ -557,6 +541,8 @@ function displaySearchResults(){
 
                 $("#search-spot-container").append($(newSpotListElement));*/
             }
+
+            mapAddHomeMarker();
             $("#loc-map-search-button").text("Search");
             isSearching = false;
         },
@@ -570,6 +556,26 @@ function displaySearchResults(){
             //Attach HTTP basic header
             xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
         }
+    });
+}
+
+function addSpotToMap(spot){
+    console.log(spot);
+    searchResultMap.addMarker({
+        lat: spot.latitude,
+        lng: spot.longitude,
+        title: spot.spotName,
+        icon  : '/static/img/red.png'
+    });
+
+    searchResultMap.drawOverlay({
+        lat: spot.latitude,
+        lng: spot.longitude,
+        verticalAlign: "bottom",
+        click: function(){
+            showSpotDetails(spot);
+        },
+      content: '<div class="map-overlay map-overlay-location" id="map-overlay-'+spot.spotId+'">'+"$"+spot.pricePerHour+"/hr"+'</div>'
     });
 }
 
@@ -638,6 +644,22 @@ function displaySpots(){
             //Attach HTTP basic header
             xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
         }
+    });
+}
+
+function mapAddHomeMarker(){
+    //Add home marker
+    searchResultMap.addMarker({
+        lat: userObject.latitude,
+        lng: userObject.longitude,
+        title: "Your Home",
+        icon  : '/static/img/blue.png'
+    });
+    searchResultMap.drawOverlay({
+        lat: userObject.latitude,
+        lng: userObject.longitude,
+        verticalAlign: "bottom",
+      content: '<div class="map-overlay">Home</div>'
     });
 }
 
@@ -728,12 +750,139 @@ function getAddressFromLatLong(lat, long, success_callback) {
   });
 }
 
-//blocking sleep, use only for debug!
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
+function showSpotDetails(spot){
+    console.log(spot);
+    $("#detail-modal").addClass("loading-icon");
+    var htmlString = "";
+    showDetailModal(htmlString, null, null);
+
+    getAddressFromLatLong(spot.latitude,spot.longitude,function(address){
+        $("#detail-modal").removeClass("loading-icon");
+        var htmlString = `
+            <button id="reserve-spot" class="uk-button uk-button-default uk-margin-small uk-width-1-1">Reserve Spot</button>
+            <div class="uk-card uk-card-default uk-width-1-1">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-expand">
+                        <h3 class="uk-card-title uk-margin-remove-bottom">`+spot.spotName+`</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                <dl class="uk-description-list">
+                    <dt>Location</dt>
+                    <dd>`+address.formattedAddress+`</dd>
+                    <dt>Capacity</dt>
+                    <dd>`+spot.capacity+`</dd>
+                    <dt>Price (Per Hour)</dt>
+                    <dd>$`+spot.pricePerHour+`/hr</dd>
+                    <dt>Rating</dt>
+                    <dd>
+                        <span class="star" uk-icon="icon: star"></span>
+                        <span class="star" uk-icon="icon: star"></span>
+                        <span class="star" uk-icon="icon: star"></span>
+                        <span class="star" uk-icon="icon: star"></span>
+                        <span class="star" uk-icon="icon: star"></span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        `;
+        showDetailModal(htmlString, null, null);
+        $("#reserve-spot").click(function(e){
+            showSpotReserve1();
+            e.preventDefault();
+        });
+    });
+}
+
+function showSpotReserve1(){
+    var htmlString = `
+    <h3>Choose Time Range</h3>
+    <hr>
+    `
+    showDetailModal(htmlString, null, null, function(){
+        showSpotReserve2();
+    });
+}
+
+function showSpotReserve2(){
+    var htmlString = `
+    <h3>Enter Payment Method</h3>
+    <hr>
+    <form class="uk-form-stacked uk-grid-small" uk-grid>
+
+        <div class="uk-margin-small uk-width-1-1">
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Name on Card">
+            </div>
+        </div>
+
+        <div class="uk-margin-small uk-width-1-1">
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Card Number">
+            </div>
+        </div>
+
+        <div class="uk-margin-small uk-width-1-2">
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Expiration Date">
+            </div>
+        </div>
+
+        <div class="uk-margin-small uk-width-1-2">
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-stacked-text" type="text" placeholder="Expiration Date">
+            </div>
+        </div>
+
+        <div class="uk-margin-small uk-width-1-1">
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-stacked-text" type="text" placeholder="ZIP/Postal Code">
+            </div>
+        </div>
+
+        <div class="uk-margin-small uk-width-1-1">
+            <div class="uk-form-controls">
+                <input type="checkbox" value="true">Remember this Payment Method<br>
+            </div>
+        </div>
+
+    </form>
+    `
+    showDetailModal(htmlString, null, null, function(){
+        UIkit.modal.alert("Spot Reserved! The Host will approve your reservation. View your reservation status and check into the spot using the My Reservations page.");
+        hideDetailModal();
+        navSet("reservation-nav");
+    });
+
+}
+
+function hideDetailModal(){
+    $("#detail-modal").slideUp();
+}
+
+function showDetailModal(pageHtml, clickHandler, backHandler, nextHandler){
+    $("#detail-modal-back").off().click(function(e){
+        e.preventDefault();
+        $("#detail-modal").slideUp();
+        if (backHandler){
+            backHandler();
+        }
+        $("#detail-modal-back").off();
+    })
+    $("#detail-modal-page").html(pageHtml);
+    $("#detail-modal-page").show();
+    $("#detail-modal").slideDown();
+    if (nextHandler){
+        console.log("adding click listener");
+        $("#detail-modal-next").off().click(function(e){
+            $("#detail-modal-next").off();
+            e.preventDefault();
+            nextHandler();
+        })
+        $("#detail-modal-next").show();
+    } else {
+        $("#detail-modal-next").hide();
     }
-  }
 }

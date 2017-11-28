@@ -11,12 +11,16 @@ body, html {
     height: 100%;
 }
 
-#nav {
+#detail-modal {
+    z-index: 100;
+}
+
+.nav {
     background-color: rgba(34, 34, 34, 0.83);
     height: 80px;
 }
 
-#nav a {
+.nav a {
     text-decoration: none;
 }
 
@@ -31,6 +35,10 @@ body, html {
     display: none;
     padding: 10px;
     box-sizing: border-box;
+}
+
+#detail-modal {
+    display: none;
 }
 
 .no-padding {
@@ -142,6 +150,12 @@ body, html {
     background-color: #545454;
 }
 
+.loading-icon {
+    background: #0093ff url("../img/loader.gif") no-repeat center;
+}
+
+
+
 #loc-map-search-opts {
     position: absolute;
     bottom: 0;
@@ -171,4 +185,24 @@ body, html {
     -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
     cursor: pointer;
+}
+
+.map-overlay-location {
+    background: #f75959 !important;
+    color: black !important;
+    opacity:0.8;
+    z-index: 1000;
+}
+
+.map-overlay{
+  display:block;
+  text-align:center;
+  color:#fff;
+  font-size:16px;
+  line-height:24px;
+  opacity:0.8;
+  background:#4477aa;
+  border-radius:4px;
+  box-shadow:2px 2px 10px #333;
+  padding:0 4px;
 }

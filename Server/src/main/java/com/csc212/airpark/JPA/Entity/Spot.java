@@ -24,6 +24,12 @@ public class Spot {
     @Column(name = "spotId", unique = true, updatable = false)
     private Integer spotId = -1;
 
+    @Column(name = "spot_name")
+    private String spotName;
+
+    @Column(name = "price_per_hour")
+    private Integer pricePerHour;
+
     @Column(name = "lat")
     private double latitude;
 

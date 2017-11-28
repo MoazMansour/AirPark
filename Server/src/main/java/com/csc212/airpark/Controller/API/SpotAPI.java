@@ -180,9 +180,15 @@ public class SpotAPI {
         try {
             DistanceMatrix distanceMatrix = getWalkingDistanceMatrix(origin, destinations);
             DistanceMatrixElement[] elements = distanceMatrix.rows[0].elements;
+            System.out.println("walking spot elements:");
             for (int i = 0; i < elements.length; i++) {
-                if (elements[i].duration.inSeconds <= walkingDuration * 60) {
-                    validSpots.add(new SpotWithDuration(allSpots.get(i),elements[i].duration.inSeconds / 60.0));
+                System.out.println("Spot "+i+", walking time: "+elements[i].duration.inSeconds);
+                try {
+                    if (elements[i].duration.inSeconds <= walkingDuration * 60) {
+                        validSpots.add(new SpotWithDuration(allSpots.get(i), elements[i].duration.inSeconds / 60.0));
+                    }
+                } catch (Exception e){
+                    System.out.println("Invalid location object "+elements[i]+", skipping.");
                 }
             }
         } catch (Exception e) {

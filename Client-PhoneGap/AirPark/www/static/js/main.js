@@ -69,27 +69,31 @@ $(function() {
   //Add spot functionality
   $("#add-spot").click(function() {
     locationSelectionModal("Add a Parking Spot", function(data) {
-      $.ajax({
-        url: baseUrl + "/api/spot",
-        type: "POST",
-        data: {
-          latitude: data.latitude,
-          longitude: data.longitude,
-          capacity: 1
-        },
-        dataType: 'json',
-        success: function(result) {
-          UIkit.modal.alert(result.message);
-          displaySpots();
-        },
-        error: function(result) {
-          UIkit.modal.alert(result.message);
-          displaySpots();
-        },
-        beforeSend: function(xhr) {
-          //Attach HTTP basic header
-          xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
-        }
+
+       UIkit.modal.prompt('Name this Spot:', 'Spot Name').then(function (name) {
+          $.ajax({
+            url: baseUrl + "/api/spot",
+            type: "POST",
+            data: {
+              latitude: data.latitude,
+              longitude: data.longitude,
+              capacity: 1,
+              name: name
+            },
+            dataType: 'json',
+            success: function(result) {
+              UIkit.modal.alert(result.message);
+              displaySpots();
+            },
+            error: function(result) {
+              UIkit.modal.alert(result.message);
+              displaySpots();
+            },
+            beforeSend: function(xhr) {
+              //Attach HTTP basic header
+              xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+            }
+          });
       });
     }, function() {});
   });
@@ -215,8 +219,12 @@ function generateSettingsPage() {
 }
 
 function generateReservationsPage() {
-  $("#active-reservations-container").html("");
-  $("#expired-reservations-container").html("");
+    $("#active-reservations-container").html("");
+    $("#expired-reservations-container").html("");
+    $("#active-reservations-header").hide();
+    $("#expired-reservations-header").hide();
+    $("#reservation-nav-page").addClass("loading-icon");
+
   // display active reservations
   $.ajax({
     url: baseUrl + "/api/reservations",
@@ -227,27 +235,16 @@ function generateReservationsPage() {
     },
     dataType: 'json',
     success: function(result) {
+        $("#active-reservations-header").show();
       var j = 0;
       for (var i = 0; i < result.length; i++) {
         getReservationInfo(result[i].reservationId, function(reservationInfo) {
-          var confirmationStatus;
-          if(reservationInfo.reservation.confirmed == false) {
-            confirmationStatus = "Pending Confirmation";
-          } else {
-            confirmationStatus = "Confirmed";
-          }
-          var date = new Date(reservationInfo.reservation.expirationTime * 1000);
-          var htmlStr = `
-            Address: ` + reservationInfo.address + `<br>
-            Expires: ` + date + `<br>
-            Owner: ` + reservationInfo.owner.name + `<br>
-            Status: ` + confirmationStatus + `<br>`;
-          $("#active-reservations-container").append(htmlStr);
+                addReservationCard(false, reservationInfo);
         });
       }
     },
     error: function(result) {
-      UIkit.modal.alert(result.message);
+      UIkit.modal.alert("Couldn't display your reservations. Please try again later!");
     },
     beforeSend: function(xhr) {
       //Attach HTTP basic header
@@ -255,36 +252,101 @@ function generateReservationsPage() {
     }
   });
 
-  // display expired reservations
-  $.ajax({
-    url: baseUrl + "/api/reservations",
-    type: "GET",
-    data: {
-      renter: userObject.userId,
-      activeStatus: false
-    },
-    dataType: 'json',
-    success: function(result) {
-      var j = 0;
-      for (var i = 0; i < result.length; i++) {
-        getReservationInfo(result[i].reservationId, function(reservationInfo) {
-          var date = new Date(reservationInfo.reservation.expirationTime * 1000);
-          var htmlStr = `
-            Address: ` + reservationInfo.address + `<br>` +
-            `Expires: ` + date + `<br>` +
-            `Owner: ` + reservationInfo.owner.name + `<br>`;
-          $("#expired-reservations-container").append(htmlStr);
-        });
+    // Display expired reservations
+    $.ajax({
+      url: baseUrl + "/api/reservations",
+      type: "GET",
+      data: {
+        renter: userObject.userId,
+        activeStatus: false
+      },
+      dataType: 'json',
+      success: function(result) {
+      $("#expired-reservations-header").show();
+        var j = 0;
+        for (var i = 0; i < result.length; i++) {
+          getReservationInfo(result[i].reservationId, function(reservationInfo) {
+              addReservationCard(true, reservationInfo);
+          });
+        }
+      },
+      error: function(result) {
+        UIkit.modal.alert("Couldn't display your reservations. Please try again later!");
+      },
+      beforeSend: function(xhr) {
+        //Attach HTTP basic header
+        xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
       }
-    },
-    error: function(result) {
-      UIkit.modal.alert(result.message);
-    },
-    beforeSend: function(xhr) {
-      //Attach HTTP basic header
-      xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+    });
+
+    setTimeout(function(){
+
+        $("#reservation-nav-page").removeClass("loading-icon");
+    },1000);
+}
+
+function addReservationCard(isExpired, reservationInfo){
+    if (!isExpired){
+        var confirmationStatus;
+        var htmlButtons = ``;
+        if(reservationInfo.reservation.confirmed == false) {
+          confirmationStatus = "Pending";
+          htmlButtons = `
+          <button class="uk-button uk-width-1-1 uk-button-secondary">Cancel</button>
+          `;
+        } else {
+          confirmationStatus = "Confirmed";
+          htmlButtons = `
+          <button class="uk-button uk-width-1-1 uk-button-primary">Check In</button>
+          <button class="uk-button uk-width-1-1 uk-button-secondary">Cancel Reservation</button>
+          `;
+        }
+        var date = new Date(reservationInfo.reservation.expirationTime * 1000);
+        var htmlStr = `
+          <div class="uk-card uk-card-default uk-margin">
+            <div class="uk-card-header">
+                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto uk-margin-remove-left">
+                        <img class="uk-border-circle" width="40" height="40" src="/static/img/tickets.png">
+                    </div>
+                    <div class="uk-width-expand">
+                        <h3 class="uk-card-title uk-margin-remove-bottom">`+confirmationStatus+`</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+            <dl class="uk-description-list">
+                <dt>Address</dt>
+                <dd>` + reservationInfo.address + `</dd>
+                <dt>Expires</dt>
+                <dd>` + date + `</dd>
+                <dt>Host</dt>
+                <dd>` + reservationInfo.owner.name + `</dd>
+            </dl>
+          </div>
+          <div class="uk-card-footer">`
+          +htmlButtons+`
+          </div>
+          </div>
+          `;
+        $("#active-reservations-container").append(htmlStr);
+    } else {
+        var date = new Date(reservationInfo.reservation.expirationTime * 1000);
+        var htmlStr = `
+          <div class="uk-card uk-card-small uk-card-default uk-card-body uk-margin">
+              <div class="uk-card-body">
+              <dl class="uk-description-list">
+                  <dt>Address</dt>
+                  <dd>` + reservationInfo.address + `</dd>
+                  <dt>Expired</dt>
+                  <dd>` + date + `</dd>
+                  <dt>Host</dt>
+                  <dd>` + reservationInfo.owner.name + `</dd>
+              </dl>
+            </div>
+          </div>`;
+        $("#expired-reservations-container").append(htmlStr);
     }
-  });
 }
 
 function generateRentalsPage() {
@@ -662,7 +724,7 @@ function displaySpots() {
 
         var newSpotListElement = `
                 <div class="spot-card uk-card uk-card-small uk-card-default uk-card-body uk-width-1-1 uk-margin">
-                    <h3 class="uk-card-title">Spot ` + result[i].spotId + `</h3>
+                    <h3 class="uk-card-title">` + result[i].spotName + `</h3>
                     <div class="spot-card-action-pane">
                     <!--<span class="spot-action-edit-` + i + `" uk-icon="icon: pencil; ratio: 1.5"></span>-->
                     <span class="spot-action-delete-` + i + `" spot-id="` + result[i].spotId + `" uk-icon="icon: trash; ratio: 1.5"></span>
@@ -965,6 +1027,26 @@ function getReservationInfo(reservationId, success_callback) {
       xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
     }
   })
+}
+
+function cancelReservation(reservationId, success){
+    $.ajax({
+      url: baseUrl + "/api/reservation/cancel/"+reservationId,
+      type: "GET",
+      dataType: 'json',
+      success: function(result) {
+        //Success
+        success();
+      },
+      error: function(result) {
+        // Failure
+        UIkit.modal.alert("Could not cancel reservation! Please try again later.");
+      },
+      beforeSend: function(xhr) {
+        //Attach HTTP basic header
+        xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+      }
+    })
 }
 
 function confirmReservation(reservationId, response) {

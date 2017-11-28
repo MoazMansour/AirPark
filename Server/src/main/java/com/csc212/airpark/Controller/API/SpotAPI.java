@@ -38,12 +38,14 @@ public class SpotAPI {
     @PostMapping("/api/spot")
     public ResponseStatus addSpot(@RequestParam("latitude") double latitude,
                                   @RequestParam("longitude") double longitude,
-                                  @RequestParam("capacity") int capacity){
+                                  @RequestParam("capacity") int capacity,
+                                  @RequestParam("name") String spotName){
 
         try {
             User spotUser = userDetailsService.getLoggedInUser();
 
             Spot newSpot = new Spot(latitude, longitude, capacity, spotUser.getUserId());
+            newSpot.setSpotName(spotName);
             spotUser.addSpot(newSpot);
             userRepository.save(spotUser);
 

@@ -349,7 +349,7 @@ function generateRentalsPage() {
             Address: ` + reservationInfo.address + `<br>` +
             `Expires: ` + date + `<br>` +
             `Renter: ` + reservationInfo.renter.name + `<br>`;
-          $("#active-rentals-container").append(htmlStr);
+          $("#expired-rentals-container").append(htmlStr);
         });
       }
     },
@@ -826,6 +826,31 @@ function getReservationInfo(reservationId, success_callback) {
     },
     error: function(result) {
       UIkit.modal.alert(result.message);
+    },
+    beforeSend: function(xhr) {
+      //Attach HTTP basic header
+      xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+    }
+  })
+}
+
+function confirmReservation(reservationId, response) {
+  $.ajax({
+    url: baseUrl + "/api/reservation",
+    type: "PATCH",
+    data: {
+      reservationId: reservationId,
+      confirmation: response
+    },
+    dataType: 'json',
+    success: function(result) {
+      //Success
+      generateRentalsPage();
+    },
+    error: function(result) {
+      // Failure
+      UIkit.modal.alert("Could not update reservation confirmation status! Please try again later.");
+      generateRentalsPage()
     },
     beforeSend: function(xhr) {
       //Attach HTTP basic header

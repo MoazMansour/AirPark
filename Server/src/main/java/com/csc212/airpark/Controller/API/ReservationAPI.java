@@ -53,6 +53,21 @@ public class ReservationAPI {
         return new ResponseStatus(1, "Could not edit reservation.");
     }
 
+    @RequestMapping("/api/reservation")
+    public ResponseStatus confirmReservation(@RequestParam("reservationId") Integer reservationId,
+                                             @RequestParam("confirmation") boolean confirmation) {
+        Reservation reservation = reservationRepository.findByReservationId(reservationId);
+        // if reply is true, confirm
+        if(confirmation) {
+            reservation.setConfirmed(true);
+            reservationRepository.save(reservation);
+            return new ResponseStatus(0, String.format("Successfully confirmed reservation with ID: %d", reservationId));
+        } else {
+            // else cancel
+            return cancelReservation(reservationId);
+        }
+    }
+
     // this method doesn't actually delete a reservation from the repository, but sets its flag to inactive
     // this is because we want to keep a history of all reservations made by a user
     @RequestMapping("/api/reservation/cancel/{reservationId}")

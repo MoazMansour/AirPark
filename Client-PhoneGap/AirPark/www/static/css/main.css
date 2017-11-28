@@ -24,6 +24,9 @@ body, html {
     text-decoration: none;
 }
 
+.uk-navbar {
+    height: 80px;
+}
 .nav-page {
     position: absolute;
     top: 80px;

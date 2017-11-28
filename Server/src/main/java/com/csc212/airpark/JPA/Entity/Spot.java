@@ -28,7 +28,7 @@ public class Spot {
     private String spotName;
 
     @Column(name = "price_per_hour")
-    private Integer pricePerHour;
+    private Integer pricePerHour = 5;
 
     @Column(name = "lat")
     private double latitude;

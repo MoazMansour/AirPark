@@ -130,12 +130,7 @@ function generateSearchPage() {
     lng: userObject.longitude
   });
   //Add home marker
-  searchResultMap.addMarker({
-    lat: userObject.latitude,
-    lng: userObject.longitude,
-    title: "Your Home",
-    icon: '/static/img/blue.png'
-  });
+  mapAddHomeMarker();
   $("#loc-map-search-button").off().click(function() {
     if (!isSearching) {
       $("#loc-map-search-button").text("Searching...");
@@ -604,21 +599,22 @@ function displaySearchResults(){
             for (var i = 0; i < result.length; i++){
                 //Add the spot to the map
                 addSpotToMap(result[i].spot);
-      }
-      $("#loc-map-search-button").text("Search");
-      isSearching = false;
-    },
-    error: function(result) {
-      //UIkit.modal.alert(result.message);
-      console.log("Search failed");
-      $("#loc-map-search-button").text("Search");
-      isSearching = false;
-    },
-    beforeSend: function(xhr) {
-      //Attach HTTP basic header
-      xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
-    }
-  });
+            }
+            mapAddHomeMarker();
+        $("#loc-map-search-button").text("Search");
+        isSearching = false;
+        },
+        error: function(result) {
+          //UIkit.modal.alert(result.message);
+          console.log("Search failed");
+          $("#loc-map-search-button").text("Search");
+          isSearching = false;
+        },
+        beforeSend: function(xhr) {
+          //Attach HTTP basic header
+          xhr.setRequestHeader('Authorization', "Basic " + loggedInCredentials);
+        }
+    });
 }
 
 function addSpotToMap(spot){

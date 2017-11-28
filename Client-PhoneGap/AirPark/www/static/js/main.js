@@ -233,11 +233,18 @@ function generateReservationsPage() {
       var j = 0;
       for (var i = 0; i < result.length; i++) {
         getReservationInfo(result[i].reservationId, function(reservationInfo) {
+          var confirmationStatus;
+          if(reservationInfo.reservation.confirmed == false) {
+            confirmationStatus = "Pending Confirmation";
+          } else {
+            confirmationStatus = "Confirmed";
+          }
           var date = new Date(reservationInfo.reservation.expirationTime * 1000);
           var htmlStr = `
-            Address: ` + reservationInfo.address + `<br>` +
-            `Expires: ` + date + `<br>` +
-            `Owner: ` + reservationInfo.owner.name + `<br>`;
+            Address: ` + reservationInfo.address + `<br>
+            Expires: ` + date + `<br>
+            Owner: ` + reservationInfo.owner.name + `<br>
+            Status: ` + confirmationStatus + `<br>`;
           $("#active-reservations-container").append(htmlStr);
         });
       }
@@ -300,10 +307,18 @@ function generateRentalsPage() {
       for (var i = 0; i < result.length; i++) {
         getReservationInfo(result[i].reservationId, function(reservationInfo) {
           var date = new Date(reservationInfo.reservation.expirationTime * 1000);
+          var confirmationStatus;
+          if(reservationInfo.reservation.confirmed == false) {
+            confirmationStatus = "Pending Confirmation";
+          } else {
+            confirmationStatus = "Confirmed";
+          }
+
           var htmlStr = `
-            Address: ` + reservationInfo.address + `<br>` +
-            `Expires: ` + date + `<br>` +
-            `Renter: ` + reservationInfo.renter.name + `<br>`;
+            Address: ` + reservationInfo.address + `<br>
+            Expires: ` + date + `<br>
+            Renter: ` + reservationInfo.renter.name + `<br>
+            Status: ` + confirmationStatus + `<br>`;
           $("#active-rentals-container").append(htmlStr);
         });
       }

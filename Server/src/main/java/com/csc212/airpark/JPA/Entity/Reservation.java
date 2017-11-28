@@ -17,6 +17,7 @@ public class Reservation {
         this.startTime = startTime;
         this.expirationTime = expirationTime;
         this.activeStatus = true;
+        this.isConfirmed = false;
     }
 
     @Id
@@ -38,4 +39,7 @@ public class Reservation {
 
     @Column(name = "activeStatus", unique = false, updatable = true)
     private boolean activeStatus;
+
+    @Column(name = "isConfirmed", unique = false, updatable = true)
+    private boolean isConfirmed;
 }

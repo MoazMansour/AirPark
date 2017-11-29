@@ -59,10 +59,10 @@ public class User implements Comparable<User>, Serializable, UserDetails {
 
     //User profile data
     @Column(name = "name")
-    private String name;
+    private String name = "";
 
     @Column(name = "phone_number")
-    private String phoneNumber;
+    private String phoneNumber = "";
 
     @Id
     @GeneratedValue
